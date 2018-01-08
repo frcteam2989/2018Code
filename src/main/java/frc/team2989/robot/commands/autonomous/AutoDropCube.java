@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.team2989.robot.Robot;
 import frc.team2989.robot.RobotMap;
 
-public class AutoDropCube extends Command {
+public class AutoDropCube extends Command { // TODO: Implement after designing and implementing required arm subsystem
 
     public double distanceDriven = 0;
 
