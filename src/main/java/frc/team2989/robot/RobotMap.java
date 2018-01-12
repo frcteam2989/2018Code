@@ -25,16 +25,35 @@ public class RobotMap {
     public static int SENSORS_ENCODER_DRIVE_DISTANCE_PER_PULSE = 5;
 
     // Autonomous
-    // Drive Phase
-    public static double AUTONOMOUS_DRIVE_SPEED = 1;
-    public static double AUTONOMOUS_DRIVE_DISTANCE = 310.65;
-    public static double AUTONOMOUS_DRIVE_DEVIATION = 1;
 
-    // Turn Phase
-    public static double AUTONOMOUS_TURN_SPEED = 0.5;
-    public static double AUTONOMOUS_TURN_ROTATION = 90;
-    public static double AUTONOMOUS_TURN_ANGLE = 90;
-    public static double AUTONOMOUS_TURN_DEVIATION = 5;
+    // Close Delivery
+    // (Delivery Scenario #1)
+
+    // Drive
+    public static double AUTONOMOUS_CLOSE_DRIVE_SPEED = 1;
+    public static double AUTONOMOUS_CLOSE_DRIVE_ROTATION = 0;
+    public static double AUTONOMOUS_CLOSE_DRIVE_DISTANCE = 310.65;
+    public static double AUTONOMOUS_CLOSE_DRIVE_DEVIATION = 1;
+
+    // Turn
+    public static double AUTONOMOUS_CLOSE_TURN_SPEED = 0.5;
+    public static double AUTONOMOUS_CLOSE_TURN_ROTATION = 90;
+    public static double AUTONOMOUS_CLOSE_TURN_ANGLE = 90;
+    public static double AUTONOMOUS_CLOSE_TURN_DEVIATION = 5;
+
+    // Launch
+    public static double AUTONOMOUS_CLOSE_LAUNCH_SPEED = 0.1;
+
+    // Far Delivery
+    // (Delivery Scenario #2)
+
+    // Turn Past Phase
+    public static double AUTONOMOUS_TURN_PAST_SPEED = 0.5;
+    public static double AUTONOMOUS_TURN_PAST_ROTATION = 90;
+    public static double AUTONOMOUS_TURN_PAST_ANGLE = 90;
+    public static double AUTONOMOUS_TURN_PAST_DEVIATION = 5;
+
+    // End default constants
 
     // Called periodically from preferences command to update values so that we don't have to reboot for the constants to change
     public static void update() {
@@ -59,16 +78,29 @@ public class RobotMap {
 
         // Autonomous:
 
-        // Update Drive Phase
-        AUTONOMOUS_DRIVE_SPEED = prefs.getDouble("Autonomous Drive Stage 1 Speed (-1 to 1)", AUTONOMOUS_DRIVE_SPEED);
-        AUTONOMOUS_DRIVE_DISTANCE = prefs.getDouble("Autonomous Drive Stage 1 Distance (cm)", AUTONOMOUS_DRIVE_DISTANCE);
-        AUTONOMOUS_DRIVE_DEVIATION = prefs.getDouble("Autonomous Drive Stage 1 Deviation (cm)", AUTONOMOUS_DRIVE_DEVIATION);
+        // Close Delivery
+        // (Delivery Scenario #1)
+
+        // Drive
+        AUTONOMOUS_CLOSE_DRIVE_DISTANCE = prefs.getDouble("Auto Close Drive Stage 1 Distance (cm)", AUTONOMOUS_CLOSE_DRIVE_DISTANCE);
+        AUTONOMOUS_CLOSE_DRIVE_DEVIATION = prefs.getDouble("Auto Close Drive Stage 1 Deviation (cm)", AUTONOMOUS_CLOSE_DRIVE_DEVIATION);
+
+        // Turn
+        AUTONOMOUS_CLOSE_TURN_SPEED = prefs.getDouble("Autonomous Turn Stage Speed (-1 to 1)", AUTONOMOUS_CLOSE_TURN_SPEED);
+        AUTONOMOUS_CLOSE_TURN_ROTATION = prefs.getDouble("Autonomous Turn Stage Rotation (angle)", AUTONOMOUS_CLOSE_TURN_ROTATION);
+        AUTONOMOUS_CLOSE_TURN_ANGLE = prefs.getDouble("Autonomous Turn Stage Desired Angle", AUTONOMOUS_CLOSE_TURN_ANGLE);
+        AUTONOMOUS_CLOSE_TURN_DEVIATION = prefs.getDouble("Autonomous Turn Stage Deviation (angle)", AUTONOMOUS_CLOSE_TURN_DEVIATION);
+
+        // Launch
+        AUTONOMOUS_CLOSE_LAUNCH_SPEED = prefs.getDouble("Autonomous Close Drive Launch Speed (cm)", AUTONOMOUS_CLOSE_LAUNCH_SPEED);
+
+        // Far Delivery
+        // (Delivery Scenario #2)
 
         // Update Turn Phase
-        AUTONOMOUS_TURN_SPEED = prefs.getDouble("Autonomous Turn Stage Speed (-1 to 1)", AUTONOMOUS_TURN_SPEED);
-        AUTONOMOUS_TURN_ROTATION = prefs.getDouble("Autonomous Turn Stage Rotation (angle)", AUTONOMOUS_TURN_ROTATION);
-        AUTONOMOUS_TURN_ANGLE = prefs.getDouble("Autonomous Turn Stage Desired Angle", AUTONOMOUS_TURN_ANGLE);
-        AUTONOMOUS_TURN_DEVIATION = prefs.getDouble("Autonomous Turn Stage Deviation (angle)", AUTONOMOUS_TURN_DEVIATION);
-
+        AUTONOMOUS_TURN_PAST_SPEED = prefs.getDouble("Autonomous Turn Past Stage Speed (-1 to 1)", AUTONOMOUS_TURN_PAST_SPEED);
+        AUTONOMOUS_TURN_PAST_ROTATION = prefs.getDouble("Autonomous Turn Past Stage Rotation (angle)", AUTONOMOUS_TURN_PAST_ROTATION);
+        AUTONOMOUS_TURN_PAST_ANGLE = prefs.getDouble("Autonomous Turn Past Stage Desired Angle", AUTONOMOUS_TURN_PAST_ANGLE);
+        AUTONOMOUS_TURN_PAST_DEVIATION = prefs.getDouble("Autonomous Turn Past Stage Deviation (angle)", AUTONOMOUS_TURN_PAST_DEVIATION);
     }
 }

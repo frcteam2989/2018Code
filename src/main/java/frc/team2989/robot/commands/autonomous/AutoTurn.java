@@ -4,11 +4,20 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.team2989.robot.Robot;
 import frc.team2989.robot.RobotMap;
 
-public class AutoTurnToSwitch extends Command {
+public class AutoTurn extends Command {
     public double turnAngle = 0;
+    
+    private double angle;
+    private double deviation;
+    private double rotation;
+    private double speed;
 
-    public AutoTurnToSwitch() {
+    public AutoTurn(double angle, double deviation, double rotation, double speed) {
         requires(Robot.driveTrain);
+        this.angle = angle;
+        this.deviation = deviation;
+        this.rotation = rotation;
+        this.speed = speed;
     }
 
     @Override
@@ -19,7 +28,7 @@ public class AutoTurnToSwitch extends Command {
 
     @Override
     protected void execute() {
-        Robot.driveTrain.driveRobot(RobotMap.AUTONOMOUS_TURN_SPEED, RobotMap.AUTONOMOUS_TURN_ROTATION);
+        Robot.driveTrain.driveRobot(speed, rotation);
         turnAngle = Robot.gyro.getAngle();
     }
 
@@ -29,8 +38,8 @@ public class AutoTurnToSwitch extends Command {
     }
 
     private boolean isTurned() {
-        double angle = Robot.gyro.getAngle();
-        return (angle >= (RobotMap.AUTONOMOUS_TURN_ANGLE - RobotMap.AUTONOMOUS_TURN_DEVIATION) && angle <= (RobotMap.AUTONOMOUS_TURN_ANGLE + RobotMap.AUTONOMOUS_TURN_DEVIATION));
+        double currentAngle = Robot.gyro.getAngle();
+        return (currentAngle >= (angle - deviation) && currentAngle <= (angle + deviation));
     }
 
     @Override

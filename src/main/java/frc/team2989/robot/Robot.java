@@ -5,12 +5,10 @@ import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import frc.team2989.robot.commands.autonomous.AutoScoreSwitch;
+import frc.team2989.robot.commands.autonomous.AutoScoreCloseSwitch;
 import frc.team2989.robot.subsystems.DriveEncoder;
 import frc.team2989.robot.subsystems.DriveTrain;
 import frc.team2989.robot.subsystems.Gyro;
-
-import java.util.stream.Stream;
 
 public class Robot extends IterativeRobot {
 
@@ -28,7 +26,7 @@ public class Robot extends IterativeRobot {
         gyro = new Gyro();
         driveEncoder = new DriveEncoder();
         oi = new OI();
-        autonomousCommand = new AutoScoreSwitch();
+        autonomousCommand = new AutoScoreCloseSwitch();
 
     }
 

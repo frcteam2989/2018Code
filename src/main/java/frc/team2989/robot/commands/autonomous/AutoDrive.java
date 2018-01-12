@@ -4,12 +4,21 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.team2989.robot.Robot;
 import frc.team2989.robot.RobotMap;
 
-public class AutoDriveToSwitch extends Command {
+public class AutoDrive extends Command {
 
     public double distanceDriven = 0;
 
-    public AutoDriveToSwitch() {
+    private double distance;
+    private double deviation;
+    private double speed;
+    private double rotation;
+
+    public AutoDrive(double distance, double deviation, double speed, double rotation) {
         requires(Robot.driveTrain);
+        this.distance = distance;
+        this.deviation = deviation;
+        this.speed = speed;
+        this.rotation = rotation;
     }
 
     @Override
@@ -20,7 +29,7 @@ public class AutoDriveToSwitch extends Command {
 
     @Override
     protected void execute() {
-        Robot.driveTrain.driveRobot(RobotMap.AUTONOMOUS_DRIVE_SPEED, 0);
+        Robot.driveTrain.driveRobot(speed, rotation);
         distanceDriven = Robot.driveEncoder.getDistance();
     }
 
@@ -30,8 +39,8 @@ public class AutoDriveToSwitch extends Command {
     }
 
     private boolean isNearSwitch() {
-        double distance = Robot.driveEncoder.getDistance();
-        return (distance >= (RobotMap.AUTONOMOUS_DRIVE_DISTANCE - RobotMap.AUTONOMOUS_DRIVE_DEVIATION) && distance <= (RobotMap.AUTONOMOUS_DRIVE_DISTANCE + RobotMap.AUTONOMOUS_DRIVE_DEVIATION));
+        double currentDistance = Robot.driveEncoder.getDistance();
+        return (currentDistance >= (distance - deviation) && currentDistance <= (distance + deviation));
     }
     @Override
     protected void end() {

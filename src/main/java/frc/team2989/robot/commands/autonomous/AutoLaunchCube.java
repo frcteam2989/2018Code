@@ -4,12 +4,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.team2989.robot.Robot;
 import frc.team2989.robot.RobotMap;
 
-public class AutoDropCube extends Command { // TODO: Implement after designing and implementing required arm subsystem
+public class AutoLaunchCube extends Command { // TODO: Implement after designing and implementing required arm subsystem
 
     public double distanceDriven = 0;
+    public double speed;
 
-    public AutoDropCube() {
+    public AutoLaunchCube(double speed) {
         requires(Robot.driveTrain);
+        this.speed = speed;
     }
 
     @Override
