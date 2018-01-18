@@ -6,7 +6,6 @@ import frc.team2989.robot.RobotMap;
 
 public class AutoLaunchCube extends Command { // TODO: Implement after designing and implementing required arm subsystem
 
-    public double distanceDriven = 0;
     public double speed;
 
     public AutoLaunchCube(double speed) {
