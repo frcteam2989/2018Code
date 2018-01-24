@@ -44,6 +44,54 @@ public class RobotMap {
     // Launch
     public static double AUTONOMOUS_CLOSE_LAUNCH_SPEED = 0.1;
 
+    // FAR Delivery
+    // (Delivery Scenario #2)
+
+    // Drive
+    public static double AUTONOMOUS_FAR_DRIVE_SPEED = 1;
+    public static double AUTONOMOUS_FAR_DRIVE_ROTATION = 0;
+    public static double AUTONOMOUS_FAR_DRIVE_DISTANCE = 571.5;
+    public static double AUTONOMOUS_FAR_DRIVE_DEVIATION = 1;
+
+    // Turn
+    public static double AUTONOMOUS_FAR_TURN_SPEED = 0.5;
+    public static double AUTONOMOUS_FAR_TURN_ROTATION = 90;
+    public static double AUTONOMOUS_FAR_TURN_ANGLE = 90;
+    public static double AUTONOMOUS_FAR_TURN_DEVIATION = 5;
+
+    // Drive Past
+    public static double AUTONOMOUS_FAR_DRIVE_PAST_SPEED = 1;
+    public static double AUTONOMOUS_FAR_DRIVE_PAST_ROTATION = 0;
+    public static double AUTONOMOUS_FAR_DRIVE_PAST_DISTANCE = 635.254;
+    public static double AUTONOMOUS_FAR_DRIVE_PAST_DEVIATION = 1;
+
+    // Turn past
+    public static double AUTONOMOUS_FAR_TURN_PAST_SPEED = 0.5;
+    public static double AUTONOMOUS_FAR_TURN_PAST_ROTATION = 90;
+    public static double AUTONOMOUS_FAR_TURN_PAST_ANGLE = 90;
+    public static double AUTONOMOUS_FAR_TURN_PAST_DEVIATION = 5;
+
+    // Drive To
+    public static double AUTONOMOUS_FAR_DRIVE_TO_SPEED = 1;
+    public static double AUTONOMOUS_FAR_DRIVE_TO_ROTATION = 0;
+    public static double AUTONOMOUS_FAR_DRIVE_TO_DISTANCE = 136.652;
+    public static double AUTONOMOUS_FAR_DRIVE_TO_DEVIATION = 1;
+
+    // Turn past
+    public static double AUTONOMOUS_FAR_TURN_TO_SPEED = 0.5;
+    public static double AUTONOMOUS_FAR_TURN_TO_ROTATION = 90;
+    public static double AUTONOMOUS_FAR_TURN_TO_ANGLE = 90;
+    public static double AUTONOMOUS_FAR_TURN_TO_DEVIATION = 5;
+
+    // Drive into
+    public static double AUTONOMOUS_FAR_DRIVE_INTO_SPEED = 1;
+    public static double AUTONOMOUS_FAR_DRIVE_INTO_ROTATION = 0;
+    public static double AUTONOMOUS_FAR_DRIVE_INTO_DISTANCE = 80.01;
+    public static double AUTONOMOUS_FAR_DRIVE_INTO_DEVIATION = 1;
+    
+    // Launch
+    public static double AUTONOMOUS_FAR_LAUNCH_SPEED = 0.1;
+
     // Far Delivery
     // (Delivery Scenario #2)
 
@@ -56,7 +104,7 @@ public class RobotMap {
     // End default constants
 
     // Called periodically from preferences command to update values so that we don't have to reboot for the constants to change
-    public static void update() {
+    public static synchronized void update() {
         Preferences prefs = Preferences.getInstance();
 
         // Update motors
@@ -102,5 +150,54 @@ public class RobotMap {
         AUTONOMOUS_TURN_PAST_ROTATION = prefs.getDouble("Autonomous Turn Past Stage Rotation (angle)", AUTONOMOUS_TURN_PAST_ROTATION);
         AUTONOMOUS_TURN_PAST_ANGLE = prefs.getDouble("Autonomous Turn Past Stage Desired Angle", AUTONOMOUS_TURN_PAST_ANGLE);
         AUTONOMOUS_TURN_PAST_DEVIATION = prefs.getDouble("Autonomous Turn Past Stage Deviation (angle)", AUTONOMOUS_TURN_PAST_DEVIATION);
+
+        // FAR Delivery
+        // (Delivery Scenario #2)
+
+        // Drive
+        AUTONOMOUS_FAR_DRIVE_SPEED = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_SPEED);
+        AUTONOMOUS_FAR_DRIVE_ROTATION = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_ROTATION);
+        AUTONOMOUS_FAR_DRIVE_DISTANCE = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_DISTANCE);
+        AUTONOMOUS_FAR_DRIVE_DEVIATION = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_DEVIATION);
+
+        // Turn
+        AUTONOMOUS_FAR_TURN_SPEED = prefs.getDouble("", AUTONOMOUS_FAR_TURN_SPEED);
+        AUTONOMOUS_FAR_TURN_ROTATION = prefs.getDouble("", AUTONOMOUS_FAR_TURN_ROTATION);
+        AUTONOMOUS_FAR_TURN_ANGLE = prefs.getDouble("", AUTONOMOUS_FAR_TURN_ANGLE);
+        AUTONOMOUS_FAR_TURN_DEVIATION = prefs.getDouble("", AUTONOMOUS_FAR_TURN_DEVIATION);
+
+        // Drive Past
+        AUTONOMOUS_FAR_DRIVE_PAST_SPEED = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_PAST_SPEED);
+        AUTONOMOUS_FAR_DRIVE_PAST_ROTATION = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_PAST_ROTATION);
+        AUTONOMOUS_FAR_DRIVE_PAST_DISTANCE = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_PAST_DISTANCE);
+        AUTONOMOUS_FAR_DRIVE_PAST_DEVIATION = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_PAST_DEVIATION);
+
+        // Turn past
+        AUTONOMOUS_FAR_TURN_PAST_SPEED = prefs.getDouble("", AUTONOMOUS_FAR_TURN_PAST_SPEED);
+        AUTONOMOUS_FAR_TURN_PAST_ROTATION = prefs.getDouble("", AUTONOMOUS_FAR_TURN_PAST_ROTATION);
+        AUTONOMOUS_FAR_TURN_PAST_ANGLE = prefs.getDouble("", AUTONOMOUS_FAR_TURN_PAST_ANGLE);
+        AUTONOMOUS_FAR_TURN_PAST_DEVIATION = prefs.getDouble("", AUTONOMOUS_FAR_TURN_PAST_DEVIATION);
+
+        // Drive To
+        AUTONOMOUS_FAR_DRIVE_TO_SPEED = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_TO_SPEED);
+        AUTONOMOUS_FAR_DRIVE_TO_ROTATION = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_TO_ROTATION);
+        AUTONOMOUS_FAR_DRIVE_TO_DISTANCE = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_TO_DISTANCE);
+        AUTONOMOUS_FAR_DRIVE_TO_DEVIATION = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_TO_DEVIATION);
+
+        // Turn past
+        AUTONOMOUS_FAR_TURN_TO_SPEED = prefs.getDouble("", AUTONOMOUS_FAR_TURN_TO_SPEED);
+        AUTONOMOUS_FAR_TURN_TO_ROTATION = prefs.getDouble("", AUTONOMOUS_FAR_TURN_TO_ROTATION);
+        AUTONOMOUS_FAR_TURN_TO_ANGLE = prefs.getDouble("", AUTONOMOUS_FAR_TURN_TO_ANGLE);
+        AUTONOMOUS_FAR_TURN_TO_DEVIATION = prefs.getDouble("", AUTONOMOUS_FAR_TURN_TO_DEVIATION);
+
+        // Drive into
+        AUTONOMOUS_FAR_DRIVE_INTO_SPEED = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_INTO_SPEED);
+        AUTONOMOUS_FAR_DRIVE_INTO_ROTATION = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_INTO_ROTATION);
+        AUTONOMOUS_FAR_DRIVE_INTO_DISTANCE = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_INTO_DISTANCE);
+        AUTONOMOUS_FAR_DRIVE_INTO_DEVIATION = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_INTO_DEVIATION);
+
+        // Launch
+        AUTONOMOUS_FAR_LAUNCH_SPEED = prefs.getDouble("", AUTONOMOUS_FAR_LAUNCH_SPEED);
+
     }
 }

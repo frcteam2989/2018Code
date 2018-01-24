@@ -1,7 +1,10 @@
-package frc.team2989.robot.commands.autonomous;
+package frc.team2989.robot.commands.autonomous.commandgroups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.team2989.robot.RobotMap;
+import frc.team2989.robot.commands.autonomous.AutoDrive;
+import frc.team2989.robot.commands.autonomous.AutoLaunchCube;
+import frc.team2989.robot.commands.autonomous.AutoTurn;
 import openrio.powerup.MatchData;
 
 import java.util.stream.Stream;

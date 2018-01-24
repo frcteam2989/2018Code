@@ -2,10 +2,12 @@ package frc.team2989.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-import frc.team2989.robot.commands.autonomous.AutoScoreCloseSwitch;
+import frc.team2989.robot.commands.UpdateRobotMapCommand;
+import frc.team2989.robot.commands.autonomous.commandgroups.AutoScoreCloseSwitch;
 import frc.team2989.robot.subsystems.DriveEncoder;
 import frc.team2989.robot.subsystems.DriveTrain;
 import frc.team2989.robot.subsystems.Gyro;
@@ -23,10 +25,11 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         updatePreferences();
         driveTrain = new DriveTrain();
-        gyro = new Gyro();
-        driveEncoder = new DriveEncoder();
+        // gyro = new Gyro();
+        // driveEncoder = new DriveEncoder();
         oi = new OI();
         autonomousCommand = new AutoScoreCloseSwitch();
+        Command robotMapUpdate = new UpdateRobotMapCommand();
 
     }
 
