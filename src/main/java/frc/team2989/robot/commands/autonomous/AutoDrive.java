@@ -2,7 +2,6 @@ package frc.team2989.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team2989.robot.Robot;
-import frc.team2989.robot.RobotMap;
 
 public class AutoDrive extends Command {
 

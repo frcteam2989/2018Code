@@ -19,6 +19,7 @@ public class Robot extends IterativeRobot {
     public static DriveEncoder driveEncoder;
     public static OI oi;
     private static CommandGroup autonomousCommand;
+    private static UpdateRobotMapCommand updateRobotMapCommand;
     Preferences robotPreferences;
 
     @Override
@@ -29,18 +30,15 @@ public class Robot extends IterativeRobot {
         // driveEncoder = new DriveEncoder();
         oi = new OI();
         autonomousCommand = new AutoScoreCloseSwitch();
-        Command robotMapUpdate = new UpdateRobotMapCommand();
-
+        updateRobotMapCommand = new UpdateRobotMapCommand();
     }
 
     @Override
     public void disabledInit() {
-
     }
 
     @Override
     public void disabledPeriodic() {
-
     }
 
     @Override
