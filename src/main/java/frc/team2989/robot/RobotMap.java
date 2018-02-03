@@ -17,6 +17,25 @@ public class RobotMap {
     public static int JOYSTICK_DRIVE_LEFT_Y = 1;
     public static int JOYSTICK_DRIVE_RIGHT_X = 4;
     public static int JOYSTICK_DRIVE_RIGHT_Y = 5;
+    public static int JOYSTICK_DRIVE_LEFT_TRIGGER = 4;
+    public static int JOYSTICK_DRIVE_RIGHT_TRIGGER = 5;
+
+    public static int JOYSTICK_ARM_PORT = 1;
+    public static int JOYSTICK_ARM_X = 0;
+    public static int JOYSTICK_ARM_Y = 1;
+    public static int JOYSTICK_ARM_BUTTON_1 = 0;
+    public static int JOYSTICK_ARM_BUTTON_2 = 1;
+    public static int JOYSTICK_ARM_BUTTON_3 = 2;
+    public static int JOYSTICK_ARM_BUTTON_4 = 3;
+    public static int JOYSTICK_ARM_BUTTON_5 = 4;
+
+    // Arm
+    public static int ARM_ELBOW_POTENTIOMETER_PORT = 0;
+    public static int ARM_WRIST_POTENTIOMETER_PORT = 1;
+    public static double ARM_ELBOW_POTENTIOMETER_OFFSET = 0;
+    public static double ARM_WRIST_POTENTIOMETER_OFFSET = 0;
+    public static double ARM_ANGLE_DEVIATION = 1;
+    public static double ARM_MOVEMENT_SPEED = .12;
 
     // Sensors
     public static int SENSORS_GYRO_PORT = 1;
@@ -106,6 +125,14 @@ public class RobotMap {
     // Called periodically from preferences command to update values so that we don't have to reboot for the constants to change
     public static synchronized void update() {
         Preferences prefs = Preferences.getInstance();
+
+        // Update Arm
+        ARM_ELBOW_POTENTIOMETER_PORT = prefs.getInt("Elbow Potentiometer Port", ARM_ELBOW_POTENTIOMETER_PORT);
+        ARM_WRIST_POTENTIOMETER_PORT = prefs.getInt("Wrist Potentiometer Port", ARM_WRIST_POTENTIOMETER_PORT);
+        ARM_ELBOW_POTENTIOMETER_OFFSET = prefs.getDouble("Elbow Potentiometer Port", ARM_ELBOW_POTENTIOMETER_OFFSET);
+        ARM_WRIST_POTENTIOMETER_OFFSET = prefs.getDouble("Wrist Potentiometer Port", ARM_WRIST_POTENTIOMETER_OFFSET);
+        ARM_ANGLE_DEVIATION = prefs.getDouble("Arm Angle Deviation", ARM_ANGLE_DEVIATION);
+        ARM_MOVEMENT_SPEED = prefs.getDouble("Arm Movement Speed", ARM_MOVEMENT_SPEED);
 
         // Update motors
         MOTOR_DRIVE_LEFT = prefs.getInt("Left Drive Motor PWM Port", MOTOR_DRIVE_LEFT);

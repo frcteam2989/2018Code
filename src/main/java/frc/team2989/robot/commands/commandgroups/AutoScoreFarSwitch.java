@@ -1,4 +1,4 @@
-package frc.team2989.robot.commands.autonomous.commandgroups;
+package frc.team2989.robot.commands.commandgroups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.team2989.robot.RobotMap;
