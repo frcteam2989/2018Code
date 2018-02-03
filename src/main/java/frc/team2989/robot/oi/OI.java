@@ -23,7 +23,7 @@ public class OI {
     public OI() {
         super();
         driveStick = new Joystick(RobotMap.JOYSTICK_DRIVE_PORT);
-        loadArmController();
+        // loadArmController();
        //  drive = new GTADrive(driveStick);
     }
 
@@ -33,7 +33,7 @@ public class OI {
 
     public void loadArmController() {
         armStick = new Joystick(RobotMap.JOYSTICK_ARM_PORT);
-        armTrigger = new JoystickButton(armStick, RobotMap.JOYSTICK_ARM_BUTTON_1);
+        armTrigger = //..new JoystickButton(armStick, RobotMap.JOYSTICK_ARM_BUTTON_1);
         arm2 = new JoystickButton(armStick, RobotMap.JOYSTICK_ARM_BUTTON_2);
         arm3 = new JoystickButton(armStick, RobotMap.JOYSTICK_ARM_BUTTON_3);
         arm4 = new JoystickButton(armStick, RobotMap.JOYSTICK_ARM_BUTTON_4);

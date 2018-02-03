@@ -9,15 +9,13 @@ public enum DriveDirection {
     public static DriveDirection fromTriggers(double leftTrigger, double rightTrigger) {
         boolean isReverse = leftTrigger <= 0;
         boolean isForward = rightTrigger <= 0;
-        if(isReverse && isForward) {
+        if(isReverse && isForward || (!isReverse && !isForward)) {
             return STOPPED;
         }
-        if(!isReverse && !isForward) {
-            return STOPPED;
-        }
-        if(isReverse) {
-            return REVERSE;
-        }
-        return FORWARD;
+        return (isReverse) ? REVERSE : FORWARD;
+    }
+
+    public static double applyDirection(double speed, DriveDirection direction) {
+        return (direction == FORWARD) ? speed * 1 : speed * -1;
     }
 }

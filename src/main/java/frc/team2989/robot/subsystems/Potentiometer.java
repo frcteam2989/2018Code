@@ -9,7 +9,7 @@ public class Potentiometer extends Subsystem {
     private AnalogPotentiometer potentiometer;
     private SpeedController motor;
 
-    public Potentiometer(int port, double initialAngle, double motorPort) {
+    public Potentiometer(int port, double initialAngle) {
         potentiometer = new AnalogPotentiometer(port, 360, initialAngle);
         motor = null;
     }

@@ -29,7 +29,7 @@ public class Robot extends IterativeRobot {
         driveTrain = new DriveTrain();
         // gyro = new Gyro();
         // driveEncoder = new DriveEncoder();
-        arm = new Arm();
+        // arm = new Arm();
         oi = new OI();
         // autonomousCommand = new AutoScoreCloseSwitch();
         updateRobotMapCommand = new UpdateRobotMapCommand();

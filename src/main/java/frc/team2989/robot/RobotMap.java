@@ -17,8 +17,8 @@ public class RobotMap {
     public static int JOYSTICK_DRIVE_LEFT_Y = 1;
     public static int JOYSTICK_DRIVE_RIGHT_X = 4;
     public static int JOYSTICK_DRIVE_RIGHT_Y = 5;
-    public static int JOYSTICK_DRIVE_LEFT_TRIGGER = 4;
-    public static int JOYSTICK_DRIVE_RIGHT_TRIGGER = 5;
+    public static int JOYSTICK_DRIVE_LEFT_TRIGGER = 2;
+    public static int JOYSTICK_DRIVE_RIGHT_TRIGGER = 3;
 
     public static int JOYSTICK_ARM_PORT = 1;
     public static int JOYSTICK_ARM_X = 0;

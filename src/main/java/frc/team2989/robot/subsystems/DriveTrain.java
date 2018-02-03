@@ -25,6 +25,10 @@ public class DriveTrain extends Subsystem {
         drive.arcadeDrive(xSpeed, zRotation);
     }
 
+    public void driveWheels(double leftSpeed, double rightSpeed) {
+        drive.tankDrive(leftSpeed, rightSpeed);
+    }
+
     public void stopRobot() {
         drive.arcadeDrive(0, 0);
     }
