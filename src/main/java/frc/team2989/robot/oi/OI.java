@@ -3,7 +3,9 @@ package frc.team2989.robot.oi;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.team2989.robot.Robot;
 import frc.team2989.robot.RobotMap;
+import frc.team2989.robot.subsystems.ArmPosition;
 
 import java.util.stream.Stream;
 
@@ -38,6 +40,5 @@ public class OI {
         arm3 = new JoystickButton(armStick, RobotMap.JOYSTICK_ARM_BUTTON_3);
         arm4 = new JoystickButton(armStick, RobotMap.JOYSTICK_ARM_BUTTON_4);
         arm5 = new JoystickButton(armStick, RobotMap.JOYSTICK_ARM_BUTTON_5);
-
     }
 }

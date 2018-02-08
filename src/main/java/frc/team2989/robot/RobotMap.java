@@ -120,6 +120,20 @@ public class RobotMap {
     public static double AUTONOMOUS_TURN_PAST_ANGLE = 90;
     public static double AUTONOMOUS_TURN_PAST_DEVIATION = 5;
 
+    // Arm
+    public static int ARM_LEFT_PORT = 2;
+    public static int ARM_RIGHT_PORT = 3;
+
+    // Intake
+    public static int INTAKE_LEFT_PORT = 4;
+    public static int INTAKE_RIGHT_PORT = 5;
+    public static double INTAKE_SPEED = 0.1;
+    public static double INTAKE_SHUTOFF_DISTANCE = 2;
+    public static int INTAKE_ULTRASONIC_PORT = 0;
+    public static double INTAKE_CUBE_DEVIATION = 2;
+    public static double INTAKE_CUBE_DISTANCE = .25;
+
+
     // End default constants
 
     // Called periodically from preferences command to update values so that we don't have to reboot for the constants to change
@@ -182,49 +196,62 @@ public class RobotMap {
         // (Delivery Scenario #2)
 
         // Drive
-        AUTONOMOUS_FAR_DRIVE_SPEED = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_SPEED);
-        AUTONOMOUS_FAR_DRIVE_ROTATION = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_ROTATION);
-        AUTONOMOUS_FAR_DRIVE_DISTANCE = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_DISTANCE);
-        AUTONOMOUS_FAR_DRIVE_DEVIATION = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_DEVIATION);
+        AUTONOMOUS_FAR_DRIVE_SPEED = prefs.getDouble("Autonomous far drive speed", AUTONOMOUS_FAR_DRIVE_SPEED);
+        AUTONOMOUS_FAR_DRIVE_ROTATION = prefs.getDouble("Autonomous far drive rotation", AUTONOMOUS_FAR_DRIVE_ROTATION);
+        AUTONOMOUS_FAR_DRIVE_DISTANCE = prefs.getDouble("Autonomous far drive distance", AUTONOMOUS_FAR_DRIVE_DISTANCE);
+        AUTONOMOUS_FAR_DRIVE_DEVIATION = prefs.getDouble("Autonomous far drive deviation", AUTONOMOUS_FAR_DRIVE_DEVIATION);
 
         // Turn
-        AUTONOMOUS_FAR_TURN_SPEED = prefs.getDouble("", AUTONOMOUS_FAR_TURN_SPEED);
-        AUTONOMOUS_FAR_TURN_ROTATION = prefs.getDouble("", AUTONOMOUS_FAR_TURN_ROTATION);
-        AUTONOMOUS_FAR_TURN_ANGLE = prefs.getDouble("", AUTONOMOUS_FAR_TURN_ANGLE);
-        AUTONOMOUS_FAR_TURN_DEVIATION = prefs.getDouble("", AUTONOMOUS_FAR_TURN_DEVIATION);
+        AUTONOMOUS_FAR_TURN_SPEED = prefs.getDouble("Autonomous far turn speed", AUTONOMOUS_FAR_TURN_SPEED);
+        AUTONOMOUS_FAR_TURN_ROTATION = prefs.getDouble("Autonomous far turn rotation", AUTONOMOUS_FAR_TURN_ROTATION);
+        AUTONOMOUS_FAR_TURN_ANGLE = prefs.getDouble("Autonomous far turn angle", AUTONOMOUS_FAR_TURN_ANGLE);
+        AUTONOMOUS_FAR_TURN_DEVIATION = prefs.getDouble("Autonomous far turn deviation", AUTONOMOUS_FAR_TURN_DEVIATION);
 
         // Drive Past
-        AUTONOMOUS_FAR_DRIVE_PAST_SPEED = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_PAST_SPEED);
-        AUTONOMOUS_FAR_DRIVE_PAST_ROTATION = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_PAST_ROTATION);
-        AUTONOMOUS_FAR_DRIVE_PAST_DISTANCE = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_PAST_DISTANCE);
-        AUTONOMOUS_FAR_DRIVE_PAST_DEVIATION = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_PAST_DEVIATION);
+        AUTONOMOUS_FAR_DRIVE_PAST_SPEED = prefs.getDouble("Autonomous far drive past speed", AUTONOMOUS_FAR_DRIVE_PAST_SPEED);
+        AUTONOMOUS_FAR_DRIVE_PAST_ROTATION = prefs.getDouble("Autonomous far drive past rotation", AUTONOMOUS_FAR_DRIVE_PAST_ROTATION);
+        AUTONOMOUS_FAR_DRIVE_PAST_DISTANCE = prefs.getDouble("Autonomous far drive past distance", AUTONOMOUS_FAR_DRIVE_PAST_DISTANCE);
+        AUTONOMOUS_FAR_DRIVE_PAST_DEVIATION = prefs.getDouble("Autonomous far drive past ", AUTONOMOUS_FAR_DRIVE_PAST_DEVIATION);
 
         // Turn past
-        AUTONOMOUS_FAR_TURN_PAST_SPEED = prefs.getDouble("", AUTONOMOUS_FAR_TURN_PAST_SPEED);
-        AUTONOMOUS_FAR_TURN_PAST_ROTATION = prefs.getDouble("", AUTONOMOUS_FAR_TURN_PAST_ROTATION);
-        AUTONOMOUS_FAR_TURN_PAST_ANGLE = prefs.getDouble("", AUTONOMOUS_FAR_TURN_PAST_ANGLE);
-        AUTONOMOUS_FAR_TURN_PAST_DEVIATION = prefs.getDouble("", AUTONOMOUS_FAR_TURN_PAST_DEVIATION);
+        AUTONOMOUS_FAR_TURN_PAST_SPEED = prefs.getDouble("Autonomous far turn past speed", AUTONOMOUS_FAR_TURN_PAST_SPEED);
+        AUTONOMOUS_FAR_TURN_PAST_ROTATION = prefs.getDouble("Autonomous far turn past rotation", AUTONOMOUS_FAR_TURN_PAST_ROTATION);
+        AUTONOMOUS_FAR_TURN_PAST_ANGLE = prefs.getDouble("Autonomous far turn past angle", AUTONOMOUS_FAR_TURN_PAST_ANGLE);
+        AUTONOMOUS_FAR_TURN_PAST_DEVIATION = prefs.getDouble("Autonomous far turn past deviation", AUTONOMOUS_FAR_TURN_PAST_DEVIATION);
 
         // Drive To
-        AUTONOMOUS_FAR_DRIVE_TO_SPEED = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_TO_SPEED);
-        AUTONOMOUS_FAR_DRIVE_TO_ROTATION = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_TO_ROTATION);
-        AUTONOMOUS_FAR_DRIVE_TO_DISTANCE = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_TO_DISTANCE);
-        AUTONOMOUS_FAR_DRIVE_TO_DEVIATION = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_TO_DEVIATION);
+        AUTONOMOUS_FAR_DRIVE_TO_SPEED = prefs.getDouble("Autonomous far drive to speed", AUTONOMOUS_FAR_DRIVE_TO_SPEED);
+        AUTONOMOUS_FAR_DRIVE_TO_ROTATION = prefs.getDouble("Autonomous far drive to rotation", AUTONOMOUS_FAR_DRIVE_TO_ROTATION);
+        AUTONOMOUS_FAR_DRIVE_TO_DISTANCE = prefs.getDouble("Autonomous far drive to distance", AUTONOMOUS_FAR_DRIVE_TO_DISTANCE);
+        AUTONOMOUS_FAR_DRIVE_TO_DEVIATION = prefs.getDouble("Autonomous far drive to deviation", AUTONOMOUS_FAR_DRIVE_TO_DEVIATION);
 
         // Turn past
-        AUTONOMOUS_FAR_TURN_TO_SPEED = prefs.getDouble("", AUTONOMOUS_FAR_TURN_TO_SPEED);
-        AUTONOMOUS_FAR_TURN_TO_ROTATION = prefs.getDouble("", AUTONOMOUS_FAR_TURN_TO_ROTATION);
-        AUTONOMOUS_FAR_TURN_TO_ANGLE = prefs.getDouble("", AUTONOMOUS_FAR_TURN_TO_ANGLE);
-        AUTONOMOUS_FAR_TURN_TO_DEVIATION = prefs.getDouble("", AUTONOMOUS_FAR_TURN_TO_DEVIATION);
+        AUTONOMOUS_FAR_TURN_TO_SPEED = prefs.getDouble("Autonomous far turn to speed", AUTONOMOUS_FAR_TURN_TO_SPEED);
+        AUTONOMOUS_FAR_TURN_TO_ROTATION = prefs.getDouble("Autonomous far turn to rotation", AUTONOMOUS_FAR_TURN_TO_ROTATION);
+        AUTONOMOUS_FAR_TURN_TO_ANGLE = prefs.getDouble("Autonomous far turn to angle", AUTONOMOUS_FAR_TURN_TO_ANGLE);
+        AUTONOMOUS_FAR_TURN_TO_DEVIATION = prefs.getDouble("Autonomous far turn to deviation", AUTONOMOUS_FAR_TURN_TO_DEVIATION);
 
         // Drive into
-        AUTONOMOUS_FAR_DRIVE_INTO_SPEED = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_INTO_SPEED);
-        AUTONOMOUS_FAR_DRIVE_INTO_ROTATION = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_INTO_ROTATION);
-        AUTONOMOUS_FAR_DRIVE_INTO_DISTANCE = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_INTO_DISTANCE);
-        AUTONOMOUS_FAR_DRIVE_INTO_DEVIATION = prefs.getDouble("", AUTONOMOUS_FAR_DRIVE_INTO_DEVIATION);
+        AUTONOMOUS_FAR_DRIVE_INTO_SPEED = prefs.getDouble("Autonomous far drive into speed", AUTONOMOUS_FAR_DRIVE_INTO_SPEED);
+        AUTONOMOUS_FAR_DRIVE_INTO_ROTATION = prefs.getDouble("Autonomous far drive into rotation", AUTONOMOUS_FAR_DRIVE_INTO_ROTATION);
+        AUTONOMOUS_FAR_DRIVE_INTO_DISTANCE = prefs.getDouble("Autonomous far drive into distance", AUTONOMOUS_FAR_DRIVE_INTO_DISTANCE);
+        AUTONOMOUS_FAR_DRIVE_INTO_DEVIATION = prefs.getDouble("Autonomous far drive into deviation", AUTONOMOUS_FAR_DRIVE_INTO_DEVIATION);
 
         // Launch
-        AUTONOMOUS_FAR_LAUNCH_SPEED = prefs.getDouble("", AUTONOMOUS_FAR_LAUNCH_SPEED);
+        AUTONOMOUS_FAR_LAUNCH_SPEED = prefs.getDouble("Autonomous Far Launch Sspeed", AUTONOMOUS_FAR_LAUNCH_SPEED);
 
+
+        // Update Arm
+        ARM_LEFT_PORT = prefs.getInt("Left Arm Speed Controller Port", ARM_LEFT_PORT);
+        ARM_RIGHT_PORT = prefs.getInt("Right Arm Speed Controller Port", ARM_RIGHT_PORT);
+
+        // Update Intake
+        INTAKE_LEFT_PORT = prefs.getInt("Left Intake Speed Controller Port", INTAKE_LEFT_PORT);
+        INTAKE_RIGHT_PORT = prefs.getInt("Right Intake Speed Controller Port", INTAKE_RIGHT_PORT);
+        INTAKE_SPEED = prefs.getDouble("Intake Speed", INTAKE_SPEED);
+        INTAKE_SHUTOFF_DISTANCE = prefs.getDouble("Intake Shutoff Distance (in)", INTAKE_SHUTOFF_DISTANCE);
+        INTAKE_ULTRASONIC_PORT = prefs.getInt("Intake Ultrasonic Sensor Port", INTAKE_ULTRASONIC_PORT);
+        INTAKE_CUBE_DEVIATION = prefs.getDouble("Intake Ultrasonic Cube Deviation", INTAKE_CUBE_DEVIATION);
+        INTAKE_CUBE_DISTANCE = prefs.getDouble("Intake Ultrasonic Cube Distance", INTAKE_CUBE_DISTANCE);
     }
 }

@@ -7,10 +7,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import frc.team2989.robot.commands.UpdateRobotMapCommand;
 import frc.team2989.robot.oi.OI;
-import frc.team2989.robot.subsystems.Arm;
-import frc.team2989.robot.subsystems.DriveEncoder;
-import frc.team2989.robot.subsystems.DriveTrain;
-import frc.team2989.robot.subsystems.Gyro;
+import frc.team2989.robot.subsystems.*;
 
 public class Robot extends IterativeRobot {
 
@@ -18,7 +15,9 @@ public class Robot extends IterativeRobot {
     public static Gyro gyro;
     public static DriveEncoder driveEncoder;
     public static Arm arm;
+    public static Intake intake;
     public static OI oi;
+    public static UltrasonicSensor ultrasonicSensor;
     private static CommandGroup autonomousCommand;
     private static UpdateRobotMapCommand updateRobotMapCommand;
     Preferences robotPreferences;
@@ -30,6 +29,8 @@ public class Robot extends IterativeRobot {
         // gyro = new Gyro();
         // driveEncoder = new DriveEncoder();
         // arm = new Arm();
+        // ultrasonicSensor = new UltrasonicSensor();
+        // intake = new Intake();
         oi = new OI();
         // autonomousCommand = new AutoScoreCloseSwitch();
         updateRobotMapCommand = new UpdateRobotMapCommand();
