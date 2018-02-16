@@ -16,6 +16,7 @@ public class Robot extends IterativeRobot {
     public static DriveEncoder driveEncoder;
     public static Arm arm;
     public static Intake intake;
+    public static Climbing climbing;
     public static OI oi;
     public static UltrasonicSensor ultrasonicSensor;
     private static CommandGroup autonomousCommand;
@@ -27,10 +28,11 @@ public class Robot extends IterativeRobot {
         updatePreferences();
         driveTrain = new DriveTrain();
         // gyro = new Gyro();
-        // driveEncoder = new DriveEncoder();
-        // arm = new Arm();
+        driveEncoder = new DriveEncoder();
+        arm = new Arm();
         // ultrasonicSensor = new UltrasonicSensor();
-        // intake = new Intake();
+        intake = new Intake();
+        climbing = new Climbing();
         oi = new OI();
         // autonomousCommand = new AutoScoreCloseSwitch();
         updateRobotMapCommand = new UpdateRobotMapCommand();
@@ -61,6 +63,7 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void teleopPeriodic() {
+        arm.debugAngles();
         Scheduler.getInstance().run();
     }
 

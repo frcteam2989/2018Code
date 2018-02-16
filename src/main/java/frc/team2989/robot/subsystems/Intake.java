@@ -10,7 +10,7 @@ public class Intake extends Subsystem {
     private SpeedControllerGroup intakeTalons;
 
     public Intake() {
-        intakeTalons = new SpeedControllerGroup(new PWMTalonSRX(RobotMap.INTAKE_LEFT_PORT), new PWMTalonSRX(RobotMap.INTAKE_RIGHT_PORT));
+        intakeTalons = new SpeedControllerGroup(new PWMTalonSRX(RobotMap.INTAKE_PORT));
     }
 
     @Override

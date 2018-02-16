@@ -12,7 +12,7 @@ public class RobotMap {
     public static int MOTOR_DRIVE_RIGHT = 1;
 
     // Operator Interface
-    public static int JOYSTICK_DRIVE_PORT = 0;
+    public static int JOYSTICK_DRIVE_PORT = 1;
     public static int JOYSTICK_DRIVE_LEFT_X = 0;
     public static int JOYSTICK_DRIVE_LEFT_Y = 1;
     public static int JOYSTICK_DRIVE_RIGHT_X = 4;
@@ -20,7 +20,7 @@ public class RobotMap {
     public static int JOYSTICK_DRIVE_LEFT_TRIGGER = 2;
     public static int JOYSTICK_DRIVE_RIGHT_TRIGGER = 3;
 
-    public static int JOYSTICK_ARM_PORT = 1;
+    public static int JOYSTICK_ARM_PORT = 0;
     public static int JOYSTICK_ARM_X = 0;
     public static int JOYSTICK_ARM_Y = 1;
     public static int JOYSTICK_ARM_BUTTON_1 = 0;
@@ -32,15 +32,15 @@ public class RobotMap {
     // Arm
     public static int ARM_ELBOW_POTENTIOMETER_PORT = 0;
     public static int ARM_WRIST_POTENTIOMETER_PORT = 1;
-    public static double ARM_ELBOW_POTENTIOMETER_OFFSET = 0;
-    public static double ARM_WRIST_POTENTIOMETER_OFFSET = 0;
+    public static double ARM_ELBOW_POTENTIOMETER_OFFSET = .49;
+    public static double ARM_WRIST_POTENTIOMETER_OFFSET = .32;
     public static double ARM_ANGLE_DEVIATION = 1;
-    public static double ARM_MOVEMENT_SPEED = .12;
+    public static double ARM_MOVEMENT_SPEED = .25;
 
     // Sensors
     public static int SENSORS_GYRO_PORT = 1;
-    public static int SENSORS_ENCODER_DRIVE_PORT1 = 0;
-    public static int SENSORS_ENCODER_DRIVE_PORT2 = 1;
+    public static int SENSORS_ENCODER_DRIVE_PORT1 = 2;
+    public static int SENSORS_ENCODER_DRIVE_PORT2 = 3;
     public static int SENSORS_ENCODER_DRIVE_DISTANCE_PER_PULSE = 5;
 
     // Autonomous
@@ -121,18 +121,28 @@ public class RobotMap {
     public static double AUTONOMOUS_TURN_PAST_DEVIATION = 5;
 
     // Arm
-    public static int ARM_LEFT_PORT = 2;
-    public static int ARM_RIGHT_PORT = 3;
+    public static int ARM_ELBOW_PORT = 2;
+    public static int ARM_WRIST_PORT = 3;
 
     // Intake
-    public static int INTAKE_LEFT_PORT = 4;
-    public static int INTAKE_RIGHT_PORT = 5;
+    public static int INTAKE_PORT = 4;
     public static double INTAKE_SPEED = 0.1;
     public static double INTAKE_SHUTOFF_DISTANCE = 2;
-    public static int INTAKE_ULTRASONIC_PORT = 0;
+    public static int INTAKE_ULTRASONIC_PORT = 4;
     public static double INTAKE_CUBE_DEVIATION = 2;
     public static double INTAKE_CUBE_DISTANCE = .25;
 
+    // Climbing
+    public static int CLIMBING_GEARBOX_1 = 5;
+    public static int CLIMBING_GEARBOX_2 = 6;
+    public static int CLIMBING_TAPE_MEASURE = 7;
+
+    // Potentiometer Constants
+    public static double POTENTIOMETER_WRIST_FIRST_ANGLE_LENGTH = .17;
+    public static double POTENTIOMETER_WRIST_SECOND_ANGLE_LENGTH = .135;
+    public static double POTENTIOMETER_ELBOW_FIRST_ANGLE_LENGTH = .28;
+    public static double POTENTIOMETER_ELBOW_SECOND_ANGLE_LENGTH = .3;
+    public static double POTENTIOMETER_TOTAL_DISTANCE = .69;
 
     // End default constants
 
@@ -242,16 +252,29 @@ public class RobotMap {
 
 
         // Update Arm
-        ARM_LEFT_PORT = prefs.getInt("Left Arm Speed Controller Port", ARM_LEFT_PORT);
-        ARM_RIGHT_PORT = prefs.getInt("Right Arm Speed Controller Port", ARM_RIGHT_PORT);
+        ARM_ELBOW_PORT = prefs.getInt("Left Arm Speed Controller Port", ARM_ELBOW_PORT);
+        ARM_WRIST_PORT = prefs.getInt("Right Arm Speed Controller Port", ARM_WRIST_PORT);
 
         // Update Intake
-        INTAKE_LEFT_PORT = prefs.getInt("Left Intake Speed Controller Port", INTAKE_LEFT_PORT);
-        INTAKE_RIGHT_PORT = prefs.getInt("Right Intake Speed Controller Port", INTAKE_RIGHT_PORT);
+        INTAKE_PORT = prefs.getInt("Intake Speed Controller Port", INTAKE_PORT);
         INTAKE_SPEED = prefs.getDouble("Intake Speed", INTAKE_SPEED);
         INTAKE_SHUTOFF_DISTANCE = prefs.getDouble("Intake Shutoff Distance (in)", INTAKE_SHUTOFF_DISTANCE);
         INTAKE_ULTRASONIC_PORT = prefs.getInt("Intake Ultrasonic Sensor Port", INTAKE_ULTRASONIC_PORT);
         INTAKE_CUBE_DEVIATION = prefs.getDouble("Intake Ultrasonic Cube Deviation", INTAKE_CUBE_DEVIATION);
         INTAKE_CUBE_DISTANCE = prefs.getDouble("Intake Ultrasonic Cube Distance", INTAKE_CUBE_DISTANCE);
+
+        // Update Climbing
+        CLIMBING_GEARBOX_1 = prefs.getInt("Climbing Gearbox Port 1", CLIMBING_GEARBOX_1);
+        CLIMBING_GEARBOX_2 = prefs.getInt("Climbing Gearbox Port 2", CLIMBING_GEARBOX_2);
+        CLIMBING_TAPE_MEASURE = prefs.getInt("Climbing Tape Measure Port", CLIMBING_TAPE_MEASURE);
+
+        // Potentiometer Angle Values (m)
+        POTENTIOMETER_WRIST_FIRST_ANGLE_LENGTH = prefs.getDouble("Wrist Potentiometer First Angle Length", POTENTIOMETER_WRIST_FIRST_ANGLE_LENGTH);
+        POTENTIOMETER_WRIST_SECOND_ANGLE_LENGTH = prefs.getDouble("Wrist Potentiometer Second Angle Length", POTENTIOMETER_WRIST_SECOND_ANGLE_LENGTH);
+        
+        POTENTIOMETER_ELBOW_FIRST_ANGLE_LENGTH = prefs.getDouble("Elbow Potentiometer First Angle Length", POTENTIOMETER_ELBOW_FIRST_ANGLE_LENGTH);
+        POTENTIOMETER_ELBOW_SECOND_ANGLE_LENGTH = prefs.getDouble("Elbow Potentiometer Second Angle Length", POTENTIOMETER_ELBOW_SECOND_ANGLE_LENGTH);
+
+        POTENTIOMETER_TOTAL_DISTANCE = prefs.getDouble("Potentiometer Total Distance", POTENTIOMETER_TOTAL_DISTANCE);
     }
 }
