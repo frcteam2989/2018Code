@@ -3,7 +3,7 @@ package frc.team2989.robot.subsystems;
 public enum ArmPosition {
 
     INTAKE(45, 45),
-    REST(116.62917, 180),
+    REST(.34, .49),
     OUTTAKE(90, 90),
     TEST(80, 170);
 

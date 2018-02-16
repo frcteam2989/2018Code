@@ -5,6 +5,8 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.team2989.robot.Robot;
 import frc.team2989.robot.RobotMap;
+import frc.team2989.robot.commands.SetArmCommand;
+import frc.team2989.robot.commands.TestArmCommand;
 import frc.team2989.robot.commands.commandgroups.SetArmCommandGroup;
 import frc.team2989.robot.subsystems.ArmPosition;
 
@@ -42,7 +44,8 @@ public class OI {
         arm4 = new JoystickButton(armStick, RobotMap.JOYSTICK_ARM_BUTTON_4);
         arm5 = new JoystickButton(armStick, RobotMap.JOYSTICK_ARM_BUTTON_5);
 
-        armTrigger.whenPressed(new SetArmCommandGroup(ArmPosition.REST));
+        //armTrigger.whenPressed(new SetArmCommandGroup(ArmPosition.REST));
+        armTrigger.whileHeld(new TestArmCommand(Robot.arm.getWristPotentiometer()));
         arm2.whenPressed(new SetArmCommandGroup(ArmPosition.TEST));
         
     }

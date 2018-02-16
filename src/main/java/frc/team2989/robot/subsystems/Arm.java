@@ -33,6 +33,8 @@ public class Arm extends Subsystem {
     }
 
     public void debugAngles() {
-        System.out.printf("Elbow Potentiometer Angle: %2f\nWrist Potentiometer Angle: %2f", elbowPotentiometer.get(), wristPotentiometer.get());
+        System.out.printf("Elbow Potentiometer Angle: %2f\n Wrist Potentiometer Angle: %2f", elbowPotentiometer.get(), wristPotentiometer.get());
+        System.out.printf("Elbow RAW: %2f\n Wrist RAW: %2f", elbowPotentiometer.getRaw(), wristPotentiometer.getRaw());
+
     }
 }

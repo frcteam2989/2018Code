@@ -32,16 +32,17 @@ public class SetArmCommand extends Command {
     @Override
     protected boolean isFinished() {
         double currentAngle = potentiometer.get();
-        return (direction == DriveDirection.FORWARD) ? (currentAngle >= (angle - deviation) && currentAngle <= (angle + deviation)) : (currentAngle <= (angle - deviation) && currentAngle >= (angle + deviation));
+        return (direction != DriveDirection.FORWARD) ? (currentAngle >= (angle - deviation) && currentAngle <= (angle + deviation)) : (currentAngle <= (angle - deviation) && currentAngle >= (angle + deviation));
     }
 
     @Override
     protected void end() {
-        potentiometer.setMotorSpeed(0);
+        potentiometer.hold(direction);
     }
 
     @Override
     protected void interrupted() {
-        potentiometer.setMotorSpeed(0);
+        potentiometer.hold(direction);
     }
+
 }

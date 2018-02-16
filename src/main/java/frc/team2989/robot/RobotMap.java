@@ -34,7 +34,7 @@ public class RobotMap {
     public static int ARM_WRIST_POTENTIOMETER_PORT = 1;
     public static double ARM_ELBOW_POTENTIOMETER_OFFSET = .49;
     public static double ARM_WRIST_POTENTIOMETER_OFFSET = .32;
-    public static double ARM_ANGLE_DEVIATION = 1;
+    public static double ARM_ANGLE_DEVIATION = .02;
     public static double ARM_MOVEMENT_SPEED = .25;
 
     // Sensors
