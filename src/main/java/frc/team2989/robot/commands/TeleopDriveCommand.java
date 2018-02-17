@@ -21,6 +21,7 @@ public class TeleopDriveCommand extends Command {
     @Override
     protected void execute() {
         gtaDrive.driveRobot();
+        Robot.manualArm.move();
         /* double xSpeed = Robot.oi.getDriveStick().getRawAxis(RobotMap.JOYSTICK_DRIVE_LEFT_Y);
         double zRotation = Robot.oi.getDriveStick().getRawAxis(RobotMap.JOYSTICK_DRIVE_LEFT_X);
         Robot.driveTrain.driveRobot(xSpeed, zRotation); */

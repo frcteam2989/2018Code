@@ -9,12 +9,14 @@ public class IntakeSpinCommand extends Command {
 
     private Intake.Direction direction;
     private double distance;
-    private  double deviation;
+    private double deviation;
+    private double speed;
 
-    public IntakeSpinCommand(Intake.Direction direction) {
+    public IntakeSpinCommand(Intake.Direction direction, double speed) {
         this.direction = direction;
         this.distance = RobotMap.INTAKE_CUBE_DISTANCE;
         this.deviation = RobotMap.INTAKE_CUBE_DEVIATION;
+        this.speed = speed;
     }
 
     @Override
@@ -29,10 +31,10 @@ public class IntakeSpinCommand extends Command {
 
     @Override
     protected boolean isFinished() {
-        if(direction == Intake.Direction.INTAKE) {
+        /*if(direction == Intake.Direction.INTAKE) {
             double currentDistance = Robot.ultrasonicSensor.getRangeInches();
             return (currentDistance >= (distance - deviation) && currentDistance <= (distance + deviation));
-        }
+        }*/
         return false;
     }
 
@@ -43,6 +45,6 @@ public class IntakeSpinCommand extends Command {
 
     @Override
     protected void interrupted() {
-
+        Robot.intake.stopMotor();
     }
 }

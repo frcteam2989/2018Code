@@ -13,7 +13,7 @@ public class Potentiometer extends Subsystem {
     private PotentiometerType potentiometerType;
     private SpeedController motor;
 
-    public Potentiometer(int port, double initialAngle, PotentiometerType type) {
+    public Potentiometer(int port, PotentiometerType type) {
         potentiometer = new AnalogPotentiometer(port, RobotMap.POTENTIOMETER_TOTAL_DISTANCE, .08);
         this.potentiometerType = type;
         motor = new PWMTalonSRX(type.getMotorPort());
@@ -63,6 +63,10 @@ public class Potentiometer extends Subsystem {
 
     public double applyHold(DriveDirection direction, double speed) {
         return (direction == DriveDirection.FORWARD) ? -1 * speed : 1 * speed;
+    }
+
+    public PotentiometerType getPotentiometerType() {
+        return potentiometerType;
     }
 }
 

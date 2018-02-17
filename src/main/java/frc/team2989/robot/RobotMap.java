@@ -126,7 +126,7 @@ public class RobotMap {
 
     // Intake
     public static int INTAKE_PORT = 4;
-    public static double INTAKE_SPEED = 0.1;
+    public static double INTAKE_SPEED = .5;
     public static double INTAKE_SHUTOFF_DISTANCE = 2;
     public static int INTAKE_ULTRASONIC_PORT = 4;
     public static double INTAKE_CUBE_DEVIATION = 2;

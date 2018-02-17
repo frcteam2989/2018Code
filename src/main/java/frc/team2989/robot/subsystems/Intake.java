@@ -31,7 +31,7 @@ public class Intake extends Subsystem {
         OUTTAKE;
 
         public static double applyDirection(double speed, Direction direction) {
-            double directionFactor = (direction == OUTTAKE) ? 1 : -1;
+            double directionFactor = (direction == INTAKE) ? 1 : -1;
             return Math.abs(speed) * directionFactor;
         }
 

@@ -10,10 +10,10 @@ import java.util.stream.Stream;
 public class SetArmCommandGroup extends CommandGroup {
 
     public SetArmCommandGroup(ArmPosition position) {
-        requires(Robot.arm);
+       /* requires(Robot.arm);
         Stream.of(
             new SetArmCommand(Robot.arm.getElbowPotentiometer(), position.getElbowAngle())
            ,new SetArmCommand(Robot.arm.getWristPotentiometer(), position.getWristAngle())
-        ).forEach(this::addSequential);
+        ).forEach(this::addSequential);*/
     }
 }
