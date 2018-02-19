@@ -4,8 +4,9 @@ import edu.wpi.first.wpilibj.AnalogPotentiometer;
 import edu.wpi.first.wpilibj.PWMTalonSRX;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.team2989.robot.Robot;
 import frc.team2989.robot.RobotMap;
-import frc.team2989.robot.oi.DriveDirection;
+import frc.team2989.robot.oi.Direction;
 
 public class Potentiometer extends Subsystem {
 
@@ -16,7 +17,7 @@ public class Potentiometer extends Subsystem {
     public Potentiometer(int port, PotentiometerType type) {
         potentiometer = new AnalogPotentiometer(port, RobotMap.POTENTIOMETER_TOTAL_DISTANCE, .08);
         this.potentiometerType = type;
-        motor = new PWMTalonSRX(type.getMotorPort());
+        motor = Robot.arm.getWristController();
     }
 
     @Override
@@ -49,20 +50,12 @@ public class Potentiometer extends Subsystem {
         motor.set(speed);
     }
 
-    public double setDirection(double desiredAngle, double baseSpeed) {
-        return (moveForward(desiredAngle)) ? baseSpeed : baseSpeed * -1;
+    public double setDirection(Direction direction, double baseSpeed) {
+        return (direction == Direction.REVERSE) ? baseSpeed : baseSpeed * -1;
     }
 
     private boolean moveForward(double desiredAngle) {
         return get() >= desiredAngle;
-    }
-
-    public void hold(DriveDirection direction) {
-        motor.set(applyHold(direction, .1));
-    }
-
-    public double applyHold(DriveDirection direction, double speed) {
-        return (direction == DriveDirection.FORWARD) ? -1 * speed : 1 * speed;
     }
 
     public PotentiometerType getPotentiometerType() {

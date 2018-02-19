@@ -3,30 +3,30 @@ package frc.team2989.robot.oi;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.team2989.robot.IntakeDirection;
 import frc.team2989.robot.Robot;
 import frc.team2989.robot.RobotMap;
+import frc.team2989.robot.commands.ClimbCommand;
 import frc.team2989.robot.commands.IntakeSpinCommand;
-import frc.team2989.robot.commands.SetArmCommand;
-import frc.team2989.robot.commands.TestArmCommand;
-import frc.team2989.robot.commands.commandgroups.SetArmCommandGroup;
+import frc.team2989.robot.commands.SetElbowCommand;
 import frc.team2989.robot.subsystems.ArmPosition;
-import frc.team2989.robot.subsystems.Intake;
-
-import java.util.stream.Stream;
+import frc.team2989.robot.subsystems.Climbing;
 
 public class OI {
 
     Joystick driveStick;
     Joystick armStick;
 
+    Button elbowDown;
+    Button elbowUp;
+    Button intake;
+    Button outtakeSlow;
+    Button outtakeShoot;
+    Button climbTapeMeasure;
+    Button climbMotor;
     Button armTrigger;
-    Button arm2;
-    Button arm3;
-    Button arm4;
-    Button arm5;
-    Button arm10;
-    Button arm11;
-    Button arm6;
+    Button forwardElbow;
+    Button backwardElbow;
 
     // GTADrive drive;
 
@@ -44,22 +44,35 @@ public class OI {
     public Joystick getArmStick() { return armStick; }
 
     public void loadArmController() {
+        // 7 8 2 4 5 10 11
         armStick = new Joystick(RobotMap.JOYSTICK_ARM_PORT);
-        /*armTrigger = new JoystickButton(armStick, RobotMap.JOYSTICK_ARM_BUTTON_1);
-        arm2 = new JoystickButton(armStick, RobotMap.JOYSTICK_ARM_BUTTON_2);
-        arm3 = new JoystickButton(armStick, RobotMap.JOYSTICK_ARM_BUTTON_3);
-        arm4 = new JoystickButton(armStick, RobotMap.JOYSTICK_ARM_BUTTON_4);
-        arm5 = new JoystickButton(armStick, RobotMap.JOYSTICK_ARM_BUTTON_5);*/
-        arm6 = new JoystickButton(armStick, 6);
-        arm10 = new JoystickButton(armStick, 10);
-        arm11 = new JoystickButton(armStick, 11);
-        arm6.whileHeld(new IntakeSpinCommand(Intake.Direction.OUTTAKE, 1));
-        arm10.whileHeld(new IntakeSpinCommand(Intake.Direction.OUTTAKE, RobotMap.INTAKE_SPEED));
-        arm11.whileHeld(new IntakeSpinCommand(Intake.Direction.INTAKE, RobotMap.INTAKE_SPEED));
+        armTrigger = new JoystickButton(armStick, RobotMap.JOYSTICK_TRIGGER_BUTTON);
+        elbowDown = new JoystickButton(armStick, RobotMap.JOYSTICK_ELBOW_DOWN_BUTTON);
+        elbowUp = new JoystickButton(armStick, RobotMap.JOYSTICK_ELBOW_UP_BUTTON);
+        intake = new JoystickButton(armStick, RobotMap.JOYSTICK_INTAKE_BUTTON);
+        outtakeSlow = new JoystickButton(armStick, RobotMap.JOYSTICK_OUTTAKE_SLOW_BUTTON);
+        outtakeShoot = new JoystickButton(armStick, RobotMap.JOYSTICK_OUTTAKE_SHOOT_BUTTON);
+        climbTapeMeasure = new JoystickButton(armStick, RobotMap.JOYSTICK_CLIMB_TAPE_MEASURE_BUTTON);
+        climbMotor = new JoystickButton(armStick, RobotMap.JOYSTICK_CLIMB_MOTOR_BUTTON);
+        forwardElbow = new JoystickButton(armStick, 8);
+        backwardElbow = new JoystickButton(armStick, 9);
 
+        elbowDown.whenReleased(ArmPosition.getByPosition(ArmPosition.STARTING_BACK));
+        elbowUp.whenReleased(ArmPosition.getByPosition(ArmPosition.INTAKE));
+        forwardElbow.whileHeld(new SetElbowCommand(IntakeDirection.INTAKE, .1));
+        backwardElbow.whileHeld(new SetElbowCommand(IntakeDirection.OUTTAKE, .1));
+        intake.whileHeld(new IntakeSpinCommand(IntakeDirection.INTAKE, RobotMap.INTAKE_SPEED));
+        outtakeSlow.whileHeld(new IntakeSpinCommand(IntakeDirection.OUTTAKE, RobotMap.INTAKE_SPEED));
+        outtakeShoot.whileHeld(new IntakeSpinCommand(IntakeDirection.OUTTAKE, 1));
+        climbMotor.whileHeld(new ClimbCommand());
 
+    }
 
-        //armTrigger.whenPressed(new SetArmCommandGroup(ArmPosition.REST));
+    public Button getArmTrigger() {
+        return armTrigger;
+    }
 
+    public boolean climbTapeMeasurePressed() {
+        return climbTapeMeasure.get();
     }
 }

@@ -1,38 +1,45 @@
 package frc.team2989.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.PWMTalonSRX;
+import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.team2989.robot.Robot;
 import frc.team2989.robot.RobotMap;
-import frc.team2989.robot.commands.commandgroups.SetArmCommandGroup;
 
 public class Arm extends Subsystem {
 
-    private Potentiometer elbowPotentiometer;
-    private Potentiometer wristPotentiometer;
+    private SpeedController elbowController;
+    private SpeedController wristController;
 
     public Arm() {
-        elbowPotentiometer = new Potentiometer(RobotMap.ARM_ELBOW_POTENTIOMETER_PORT, PotentiometerType.ELBOW);
-        wristPotentiometer = new Potentiometer(RobotMap.ARM_WRIST_POTENTIOMETER_PORT, PotentiometerType.WRIST);
+        this.elbowController = new PWMTalonSRX(RobotMap.ARM_ELBOW_PORT);
+        this.wristController = new PWMTalonSRX(RobotMap.ARM_WRIST_PORT);
     }
 
     @Override
-    public void initDefaultCommand() {
+    protected void initDefaultCommand() {
 
     }
 
-    public SetArmCommandGroup getMoveCommand(ArmPosition position) {
-        return new SetArmCommandGroup(position);
+    public void setElbowSpeed(double speed) {
+        elbowController.set(speed);
     }
 
-    public Potentiometer getElbowPotentiometer() {
-        return elbowPotentiometer;
-    }
-    public Potentiometer getWristPotentiometer() {
-        return wristPotentiometer;
+    public void setWristSpeed(double speed) {
+        wristController.set(speed);
     }
 
-    public void debugAngles() {
-        System.out.printf("Elbow Potentiometer Angle: %2f\n Wrist Potentiometer Angle: %2f", elbowPotentiometer.get(), wristPotentiometer.get());
-        System.out.printf("Elbow RAW: %2f\n Wrist RAW: %2f", elbowPotentiometer.getRaw(), wristPotentiometer.getRaw());
+    public void move() {
+        if(Robot.oi.getArmTrigger().get()) {
+            Joystick armStick = Robot.oi.getArmStick();
+            setWristSpeed(-1 * armStick.getRawAxis(1));
+        } else if(wristController.get() != 0) {
+            setWristSpeed(0);
+        }
+    }
 
+    public SpeedController getWristController() {
+        return wristController;
     }
 }

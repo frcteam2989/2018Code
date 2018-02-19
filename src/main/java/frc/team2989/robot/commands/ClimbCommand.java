@@ -2,27 +2,21 @@ package frc.team2989.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team2989.robot.Robot;
+import frc.team2989.robot.RobotMap;
 
-public class UpdateRobotMapCommand extends Command {
+public class ClimbCommand extends Command {
 
-    private int counter;
+    public ClimbCommand() {requires(Robot.climbing);}
 
-    public UpdateRobotMapCommand() {
-
-    }
 
     @Override
     protected void initialize() {
-        counter = 0;
+        Robot.climbing.setGearboxSpeed(RobotMap.CLIMBING_SPEED);
     }
 
     @Override
     protected void execute() {
-        boolean callUpdate = (counter == 500);
-        if(callUpdate) {
-            Robot.updateDashboard();
-        }
-        counter = (callUpdate) ? 0 : counter+1;
+
     }
 
     @Override
@@ -32,11 +26,11 @@ public class UpdateRobotMapCommand extends Command {
 
     @Override
     protected void end() {
-
+        Robot.climbing.setGearboxSpeed(0);
     }
 
     @Override
     protected void interrupted() {
-
+        Robot.climbing.setGearboxSpeed(0);
     }
 }

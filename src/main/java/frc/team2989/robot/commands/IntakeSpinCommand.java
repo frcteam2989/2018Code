@@ -1,18 +1,19 @@
 package frc.team2989.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.team2989.robot.IntakeDirection;
 import frc.team2989.robot.Robot;
 import frc.team2989.robot.RobotMap;
 import frc.team2989.robot.subsystems.Intake;
 
 public class IntakeSpinCommand extends Command {
 
-    private Intake.Direction direction;
+    private IntakeDirection direction;
     private double distance;
     private double deviation;
     private double speed;
 
-    public IntakeSpinCommand(Intake.Direction direction, double speed) {
+    public IntakeSpinCommand(IntakeDirection direction, double speed) {
         this.direction = direction;
         this.distance = RobotMap.INTAKE_CUBE_DISTANCE;
         this.deviation = RobotMap.INTAKE_CUBE_DEVIATION;
@@ -21,7 +22,7 @@ public class IntakeSpinCommand extends Command {
 
     @Override
     protected void initialize() {
-        Robot.intake.setMotorSpeed(RobotMap.INTAKE_SPEED, direction);
+        Robot.intake.setMotorSpeed(speed, direction);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class IntakeSpinCommand extends Command {
 
     @Override
     protected boolean isFinished() {
-        /*if(direction == Intake.Direction.INTAKE) {
+        /*if(direction == IntakeIntakeDirection.INTAKE) {
             double currentDistance = Robot.ultrasonicSensor.getRangeInches();
             return (currentDistance >= (distance - deviation) && currentDistance <= (distance + deviation));
         }*/

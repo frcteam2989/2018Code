@@ -1,8 +1,6 @@
 package frc.team2989.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.team2989.robot.RobotMap;
-import frc.team2989.robot.oi.DriveDirection;
 import frc.team2989.robot.subsystems.Potentiometer;
 
 public class TestArmCommand extends Command {

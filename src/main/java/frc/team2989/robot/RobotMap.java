@@ -23,25 +23,28 @@ public class RobotMap {
     public static int JOYSTICK_ARM_PORT = 0;
     public static int JOYSTICK_ARM_X = 0;
     public static int JOYSTICK_ARM_Y = 1;
-    public static int JOYSTICK_ARM_BUTTON_1 = 0;
-    public static int JOYSTICK_ARM_BUTTON_2 = 1;
-    public static int JOYSTICK_ARM_BUTTON_3 = 2;
-    public static int JOYSTICK_ARM_BUTTON_4 = 3;
-    public static int JOYSTICK_ARM_BUTTON_5 = 4;
+    public static int JOYSTICK_ELBOW_DOWN_BUTTON = 7;
+    public static int JOYSTICK_ELBOW_UP_BUTTON = 8;
+    public static int JOYSTICK_INTAKE_BUTTON = 2;
+    public static int JOYSTICK_OUTTAKE_SLOW_BUTTON = 4;
+    public static int JOYSTICK_OUTTAKE_SHOOT_BUTTON = 5;
+    public static int JOYSTICK_CLIMB_TAPE_MEASURE_BUTTON = 10;
+    public static int JOYSTICK_CLIMB_MOTOR_BUTTON = 11;
+    public static int JOYSTICK_TRIGGER_BUTTON = 1;
 
     // Arm
-    public static int ARM_ELBOW_POTENTIOMETER_PORT = 0;
+    public static int ARM_SECOND_WRIST_POTENTIOMETER_PORT = 0;
     public static int ARM_WRIST_POTENTIOMETER_PORT = 1;
     public static double ARM_ELBOW_POTENTIOMETER_OFFSET = .49;
     public static double ARM_WRIST_POTENTIOMETER_OFFSET = .32;
     public static double ARM_ANGLE_DEVIATION = .02;
-    public static double ARM_MOVEMENT_SPEED = .25;
+    public static double ARM_MOVEMENT_SPEED = .55;
 
     // Sensors
     public static int SENSORS_GYRO_PORT = 1;
     public static int SENSORS_ENCODER_DRIVE_PORT1 = 2;
     public static int SENSORS_ENCODER_DRIVE_PORT2 = 3;
-    public static int SENSORS_ENCODER_DRIVE_DISTANCE_PER_PULSE = 5;
+    public static double SENSORS_ENCODER_DRIVE_DISTANCE_PER_PULSE = 2.0377; // Inches
 
     // Autonomous
 
@@ -136,6 +139,7 @@ public class RobotMap {
     public static int CLIMBING_GEARBOX_1 = 5;
     public static int CLIMBING_GEARBOX_2 = 6;
     public static int CLIMBING_TAPE_MEASURE = 7;
+    public static double CLIMBING_SPEED = 1.0;
 
     // Potentiometer Constants
     public static double POTENTIOMETER_WRIST_FIRST_ANGLE_LENGTH = .17;
@@ -151,7 +155,7 @@ public class RobotMap {
         Preferences prefs = Preferences.getInstance();
 
         // Update Arm
-        ARM_ELBOW_POTENTIOMETER_PORT = prefs.getInt("Elbow Potentiometer Port", ARM_ELBOW_POTENTIOMETER_PORT);
+        ARM_SECOND_WRIST_POTENTIOMETER_PORT = prefs.getInt("Second Wrist Potentiometer Port", ARM_SECOND_WRIST_POTENTIOMETER_PORT);
         ARM_WRIST_POTENTIOMETER_PORT = prefs.getInt("Wrist Potentiometer Port", ARM_WRIST_POTENTIOMETER_PORT);
         ARM_ELBOW_POTENTIOMETER_OFFSET = prefs.getDouble("Elbow Potentiometer Port", ARM_ELBOW_POTENTIOMETER_OFFSET);
         ARM_WRIST_POTENTIOMETER_OFFSET = prefs.getDouble("Wrist Potentiometer Port", ARM_WRIST_POTENTIOMETER_OFFSET);
@@ -169,11 +173,23 @@ public class RobotMap {
         JOYSTICK_DRIVE_RIGHT_X = prefs.getInt("Drive Joystick Right X Axis", JOYSTICK_DRIVE_RIGHT_X);
         JOYSTICK_DRIVE_RIGHT_Y = prefs.getInt("Drive Joystick Right Y Axis", JOYSTICK_DRIVE_RIGHT_Y);
 
+
+        // Update OI (secondary)
+
+        JOYSTICK_ELBOW_DOWN_BUTTON = prefs.getInt("Joystick Elbow Down Button", JOYSTICK_ELBOW_DOWN_BUTTON);
+        JOYSTICK_ELBOW_UP_BUTTON = prefs.getInt("Joystick Elbow Up Button", JOYSTICK_ELBOW_UP_BUTTON);
+        JOYSTICK_INTAKE_BUTTON = prefs.getInt("Joystick Intake Button", JOYSTICK_INTAKE_BUTTON);
+        JOYSTICK_OUTTAKE_SLOW_BUTTON = prefs.getInt("Joystick Outtake (Slow) Button", JOYSTICK_OUTTAKE_SLOW_BUTTON);
+        JOYSTICK_OUTTAKE_SHOOT_BUTTON = prefs.getInt("Joystick Outtake (Shoot) Button", JOYSTICK_OUTTAKE_SHOOT_BUTTON);
+        JOYSTICK_CLIMB_TAPE_MEASURE_BUTTON = prefs.getInt("Joystick Climb Tape Measure Button", JOYSTICK_CLIMB_TAPE_MEASURE_BUTTON);
+        JOYSTICK_CLIMB_MOTOR_BUTTON = prefs.getInt("Joystick Climb Motor Button", JOYSTICK_CLIMB_MOTOR_BUTTON);
+        JOYSTICK_TRIGGER_BUTTON = prefs.getInt("Joystick Trigger Button", JOYSTICK_TRIGGER_BUTTON);
+
         // Update Sensors
         SENSORS_GYRO_PORT = prefs.getInt("Gyro Sensor Port", SENSORS_GYRO_PORT);
         SENSORS_ENCODER_DRIVE_PORT1 = prefs.getInt("Encoder Sensor Analog Port (1)", SENSORS_ENCODER_DRIVE_PORT1);
         SENSORS_ENCODER_DRIVE_PORT2 = prefs.getInt("Encoder Sensor Analog Port (2)", SENSORS_ENCODER_DRIVE_PORT2);
-        SENSORS_ENCODER_DRIVE_DISTANCE_PER_PULSE = prefs.getInt("Encoder Sensor Distance Per Rotation (cm)", SENSORS_ENCODER_DRIVE_DISTANCE_PER_PULSE);
+        SENSORS_ENCODER_DRIVE_DISTANCE_PER_PULSE = prefs.getDouble("Encoder Sensor Distance Per Rotation (cm)", SENSORS_ENCODER_DRIVE_DISTANCE_PER_PULSE);
 
         // Autonomous:
 
@@ -267,6 +283,7 @@ public class RobotMap {
         CLIMBING_GEARBOX_1 = prefs.getInt("Climbing Gearbox Port 1", CLIMBING_GEARBOX_1);
         CLIMBING_GEARBOX_2 = prefs.getInt("Climbing Gearbox Port 2", CLIMBING_GEARBOX_2);
         CLIMBING_TAPE_MEASURE = prefs.getInt("Climbing Tape Measure Port", CLIMBING_TAPE_MEASURE);
+        CLIMBING_SPEED = prefs.getDouble("Climbing Speed", CLIMBING_SPEED);
 
         // Potentiometer Angle Values (m)
         POTENTIOMETER_WRIST_FIRST_ANGLE_LENGTH = prefs.getDouble("Wrist Potentiometer First Angle Length", POTENTIOMETER_WRIST_FIRST_ANGLE_LENGTH);

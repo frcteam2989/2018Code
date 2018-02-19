@@ -17,7 +17,7 @@ public class GTADrive {
         DriveTrain driveTrain = Robot.driveTrain;
         double leftTrigger = stick.getRawAxis(RobotMap.JOYSTICK_DRIVE_LEFT_TRIGGER);
         double rightTrigger = stick.getRawAxis(RobotMap.JOYSTICK_DRIVE_RIGHT_TRIGGER);
-        DriveDirection direction = DriveDirection.fromTriggers(leftTrigger, rightTrigger);
+        Direction direction = Direction.fromTriggers(leftTrigger, rightTrigger);
         switch(direction) {
             case STOPPED:
                driveTrain.driveWheels(0, 0);
@@ -26,7 +26,7 @@ public class GTADrive {
                 double speed = stick.getRawAxis(RobotMap.JOYSTICK_DRIVE_LEFT_Y);
                 speed*= -.5;
                 speed+= .5;
-                speed = DriveDirection. applyDirection(Math.abs(speed), direction);
+                speed = Direction. applyDirection(Math.abs(speed), direction);
                 double turnRotation = stick.getRawAxis(RobotMap.JOYSTICK_DRIVE_RIGHT_X) * -1;
                 driveTrain.driveRobot(speed, turnRotation);
                 break;
