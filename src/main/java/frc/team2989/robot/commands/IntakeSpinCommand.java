@@ -32,10 +32,6 @@ public class IntakeSpinCommand extends Command {
 
     @Override
     protected boolean isFinished() {
-        /*if(direction == IntakeIntakeDirection.INTAKE) {
-            double currentDistance = Robot.ultrasonicSensor.getRangeInches();
-            return (currentDistance >= (distance - deviation) && currentDistance <= (distance + deviation));
-        }*/
         return false;
     }
 

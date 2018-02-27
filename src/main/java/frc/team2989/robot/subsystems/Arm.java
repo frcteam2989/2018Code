@@ -15,6 +15,7 @@ public class Arm extends Subsystem {
     public Arm() {
         this.elbowController = new PWMTalonSRX(RobotMap.ARM_ELBOW_PORT);
         this.wristController = new PWMTalonSRX(RobotMap.ARM_WRIST_PORT);
+        wristController.setInverted(true);
     }
 
     @Override
@@ -33,7 +34,7 @@ public class Arm extends Subsystem {
     public void move() {
         if(Robot.oi.getArmTrigger().get()) {
             Joystick armStick = Robot.oi.getArmStick();
-            setWristSpeed(-1 * armStick.getRawAxis(1));
+            setWristSpeed(armStick.getRawAxis(1));
         } else if(wristController.get() != 0) {
             setWristSpeed(0);
         }
@@ -41,5 +42,9 @@ public class Arm extends Subsystem {
 
     public SpeedController getWristController() {
         return wristController;
+    }
+
+    public double getWristSpeed() {
+        return wristController.get();
     }
 }

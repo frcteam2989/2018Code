@@ -32,10 +32,10 @@ public class Climbing extends Subsystem {
     }
 
     public void moveTapeMeasure() {
-        if(Robot.oi.climbTapeMeasurePressed()) {
+        /*if(Robot.oi.climbTapeMeasurePressed()) {
             Joystick armStick = Robot.oi.getArmStick();
             setTapeMeasureSpeed(-1 * armStick.getRawAxis(1));
-        } else if(tapeMeasureMotor.get() != 0){
+        } else */if(tapeMeasureMotor.get() != 0){
             setTapeMeasureSpeed(0);
         }
     }

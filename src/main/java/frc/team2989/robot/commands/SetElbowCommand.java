@@ -10,11 +10,13 @@ public class SetElbowCommand extends Command {
     private IntakeDirection direction;
     private double totalCounter;
     private double currentCounter;
+    private double speed;
 
     public SetElbowCommand(IntakeDirection direction, double moveSeconds) {
         this.direction = direction;
         totalCounter=moveSeconds*5;
         currentCounter = 0;
+        speed = (direction == IntakeDirection.INTAKE) ? .2 : .25;
     }
 
     public static SetElbowCommand getSetCommand(IntakeDirection direction) {
@@ -23,12 +25,12 @@ public class SetElbowCommand extends Command {
 
     @Override
     protected void initialize() {
-        Robot.arm.setElbowSpeed(IntakeDirection.applyDirection(RobotMap.ARM_MOVEMENT_SPEED, direction));
+        Robot.arm.setElbowSpeed(IntakeDirection.applyDirection(speed, direction));
     }
 
     @Override
     protected void execute() {
-
+        currentCounter++;
     }
 
     @Override

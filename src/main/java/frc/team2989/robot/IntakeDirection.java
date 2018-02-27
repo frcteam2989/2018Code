@@ -5,7 +5,7 @@ public enum IntakeDirection {
     OUTTAKE; // Up
 
     public static double applyDirection(double speed, IntakeDirection direction) {
-        double directionFactor = (direction == INTAKE) ? 1 : -1;
+        double directionFactor = (direction == INTAKE) ? -1 : 1;
         return Math.abs(speed) * directionFactor;
     }
 

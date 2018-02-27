@@ -4,29 +4,26 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.team2989.robot.IntakeDirection;
-import frc.team2989.robot.Robot;
 import frc.team2989.robot.RobotMap;
-import frc.team2989.robot.commands.ClimbCommand;
-import frc.team2989.robot.commands.IntakeSpinCommand;
-import frc.team2989.robot.commands.SetElbowCommand;
+import frc.team2989.robot.commands.*;
 import frc.team2989.robot.subsystems.ArmPosition;
-import frc.team2989.robot.subsystems.Climbing;
 
 public class OI {
 
     Joystick driveStick;
     Joystick armStick;
 
-    Button elbowDown;
+    Button button6;
+    Button button7;
     Button elbowUp;
     Button intake;
     Button outtakeSlow;
     Button outtakeShoot;
-    Button climbTapeMeasure;
-    Button climbMotor;
+    Button shootBackButton;
+    Button exchangeButton;
     Button armTrigger;
     Button forwardElbow;
-    Button backwardElbow;
+    Button preIntake;
 
     // GTADrive drive;
 
@@ -47,25 +44,28 @@ public class OI {
         // 7 8 2 4 5 10 11
         armStick = new Joystick(RobotMap.JOYSTICK_ARM_PORT);
         armTrigger = new JoystickButton(armStick, RobotMap.JOYSTICK_TRIGGER_BUTTON);
-        elbowDown = new JoystickButton(armStick, RobotMap.JOYSTICK_ELBOW_DOWN_BUTTON);
+        button7 = new JoystickButton(armStick, RobotMap.JOYSTICK_ELBOW_DOWN_BUTTON);
         elbowUp = new JoystickButton(armStick, RobotMap.JOYSTICK_ELBOW_UP_BUTTON);
         intake = new JoystickButton(armStick, RobotMap.JOYSTICK_INTAKE_BUTTON);
         outtakeSlow = new JoystickButton(armStick, RobotMap.JOYSTICK_OUTTAKE_SLOW_BUTTON);
         outtakeShoot = new JoystickButton(armStick, RobotMap.JOYSTICK_OUTTAKE_SHOOT_BUTTON);
-        climbTapeMeasure = new JoystickButton(armStick, RobotMap.JOYSTICK_CLIMB_TAPE_MEASURE_BUTTON);
-        climbMotor = new JoystickButton(armStick, RobotMap.JOYSTICK_CLIMB_MOTOR_BUTTON);
+        shootBackButton = new JoystickButton(armStick, RobotMap.JOYSTICK_SHOOT_BACK_BUTTON);
+        exchangeButton = new JoystickButton(armStick, RobotMap.JOYSTICK_EXCHANGE_BUTTON);
         forwardElbow = new JoystickButton(armStick, 8);
-        backwardElbow = new JoystickButton(armStick, 9);
+        preIntake = new JoystickButton(armStick, 9);
+        button6 = new JoystickButton(armStick, 6);
 
-        elbowDown.whenReleased(ArmPosition.getByPosition(ArmPosition.STARTING_BACK));
-        elbowUp.whenReleased(ArmPosition.getByPosition(ArmPosition.INTAKE));
-        forwardElbow.whileHeld(new SetElbowCommand(IntakeDirection.INTAKE, .1));
-        backwardElbow.whileHeld(new SetElbowCommand(IntakeDirection.OUTTAKE, .1));
+        button6.whileHeld(ArmPosition.getByPosition(ArmPosition.STARTING_FRONT));
+        button7.whileHeld(ArmPosition.getByPosition(ArmPosition.SHOOT_FORWARD));
+        shootBackButton.whileHeld(ArmPosition.getByPosition(ArmPosition.SHOOT_BACK));
+        exchangeButton.whileHeld(ArmPosition.getByPosition(ArmPosition.EXCHANGE));
+
+        elbowUp.whileHeld(new SetArmCommandGroup(ArmPosition.INTAKE)); // Quick Intake
+        preIntake.whileHeld(ArmPosition.getByPosition(ArmPosition.POT2_VERT));
+
         intake.whileHeld(new IntakeSpinCommand(IntakeDirection.INTAKE, RobotMap.INTAKE_SPEED));
         outtakeSlow.whileHeld(new IntakeSpinCommand(IntakeDirection.OUTTAKE, RobotMap.INTAKE_SPEED));
         outtakeShoot.whileHeld(new IntakeSpinCommand(IntakeDirection.OUTTAKE, 1));
-        climbMotor.whileHeld(new ClimbCommand());
-
     }
 
     public Button getArmTrigger() {
@@ -73,6 +73,6 @@ public class OI {
     }
 
     public boolean climbTapeMeasurePressed() {
-        return climbTapeMeasure.get();
+        return shootBackButton.get();
     }
 }

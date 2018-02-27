@@ -47,7 +47,7 @@ public class Potentiometer extends Subsystem {
     }
 
     public void setMotorSpeed(double speed) {
-        motor.set(speed);
+        Robot.arm.setWristSpeed(speed);
     }
 
     public double setDirection(Direction direction, double baseSpeed) {

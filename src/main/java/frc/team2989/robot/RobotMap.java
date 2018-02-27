@@ -28,8 +28,8 @@ public class RobotMap {
     public static int JOYSTICK_INTAKE_BUTTON = 2;
     public static int JOYSTICK_OUTTAKE_SLOW_BUTTON = 4;
     public static int JOYSTICK_OUTTAKE_SHOOT_BUTTON = 5;
-    public static int JOYSTICK_CLIMB_TAPE_MEASURE_BUTTON = 10;
-    public static int JOYSTICK_CLIMB_MOTOR_BUTTON = 11;
+    public static int JOYSTICK_SHOOT_BACK_BUTTON = 10;
+    public static int JOYSTICK_EXCHANGE_BUTTON = 11;
     public static int JOYSTICK_TRIGGER_BUTTON = 1;
 
     // Arm
@@ -38,7 +38,11 @@ public class RobotMap {
     public static double ARM_ELBOW_POTENTIOMETER_OFFSET = .49;
     public static double ARM_WRIST_POTENTIOMETER_OFFSET = .32;
     public static double ARM_ANGLE_DEVIATION = .02;
-    public static double ARM_MOVEMENT_SPEED = .55;
+    public static double ARM_WRIST_SPEED_SLOW = .15;
+    public static double ARM_WRIST_SPEED_FAST = .6;
+
+    public static double ARM_POTENTIOMETER_1_VERT_VALUE = 0.3424852908274029;
+    public static double ARM_POTENTIOMETER_2_VERT_VALUE = 0.3345444802608088;
 
     // Sensors
     public static int SENSORS_GYRO_PORT = 1;
@@ -160,7 +164,7 @@ public class RobotMap {
         ARM_ELBOW_POTENTIOMETER_OFFSET = prefs.getDouble("Elbow Potentiometer Port", ARM_ELBOW_POTENTIOMETER_OFFSET);
         ARM_WRIST_POTENTIOMETER_OFFSET = prefs.getDouble("Wrist Potentiometer Port", ARM_WRIST_POTENTIOMETER_OFFSET);
         ARM_ANGLE_DEVIATION = prefs.getDouble("Arm Angle Deviation", ARM_ANGLE_DEVIATION);
-        ARM_MOVEMENT_SPEED = prefs.getDouble("Arm Movement Speed", ARM_MOVEMENT_SPEED);
+        ARM_WRIST_SPEED_SLOW = prefs.getDouble("Arm Movement Speed", ARM_WRIST_SPEED_SLOW);
 
         // Update motors
         MOTOR_DRIVE_LEFT = prefs.getInt("Left Drive Motor PWM Port", MOTOR_DRIVE_LEFT);
@@ -181,8 +185,8 @@ public class RobotMap {
         JOYSTICK_INTAKE_BUTTON = prefs.getInt("Joystick Intake Button", JOYSTICK_INTAKE_BUTTON);
         JOYSTICK_OUTTAKE_SLOW_BUTTON = prefs.getInt("Joystick Outtake (Slow) Button", JOYSTICK_OUTTAKE_SLOW_BUTTON);
         JOYSTICK_OUTTAKE_SHOOT_BUTTON = prefs.getInt("Joystick Outtake (Shoot) Button", JOYSTICK_OUTTAKE_SHOOT_BUTTON);
-        JOYSTICK_CLIMB_TAPE_MEASURE_BUTTON = prefs.getInt("Joystick Climb Tape Measure Button", JOYSTICK_CLIMB_TAPE_MEASURE_BUTTON);
-        JOYSTICK_CLIMB_MOTOR_BUTTON = prefs.getInt("Joystick Climb Motor Button", JOYSTICK_CLIMB_MOTOR_BUTTON);
+        JOYSTICK_SHOOT_BACK_BUTTON = prefs.getInt("Joystick Climb Tape Measure Button", JOYSTICK_SHOOT_BACK_BUTTON);
+        JOYSTICK_EXCHANGE_BUTTON = prefs.getInt("Joystick Climb Motor Button", JOYSTICK_EXCHANGE_BUTTON);
         JOYSTICK_TRIGGER_BUTTON = prefs.getInt("Joystick Trigger Button", JOYSTICK_TRIGGER_BUTTON);
 
         // Update Sensors

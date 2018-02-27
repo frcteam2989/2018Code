@@ -10,7 +10,6 @@ import frc.team2989.robot.commands.UpdateRobotMapCommand;
 import frc.team2989.robot.oi.OI;
 import frc.team2989.robot.subsystems.*;
 
-import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class Robot extends IterativeRobot {
@@ -22,7 +21,7 @@ public class Robot extends IterativeRobot {
     public static Intake intake;
     public static Climbing climbing;
     public static Potentiometer wristPotentiometer;
-    public static Potentiometer secondWristPotentiometer;
+    public static Potentiometer secondPotentiometer;
     public static OI oi;
     private static UpdateRobotMapCommand updateRobotMapCommand;
     Preferences robotPreferences;
@@ -36,7 +35,7 @@ public class Robot extends IterativeRobot {
         arm = new Arm();
         intake = new Intake();
         wristPotentiometer = new Potentiometer(RobotMap.ARM_WRIST_POTENTIOMETER_PORT, PotentiometerType.WRIST);
-        secondWristPotentiometer = new Potentiometer(RobotMap.ARM_SECOND_WRIST_POTENTIOMETER_PORT, PotentiometerType.WRIST);
+        secondPotentiometer = new Potentiometer(RobotMap.ARM_SECOND_WRIST_POTENTIOMETER_PORT, PotentiometerType.WRIST);
         climbing = new Climbing();
         oi = new OI();
         // autonomousCommand = new AutoScoreCloseSwitch();
@@ -85,7 +84,7 @@ public class Robot extends IterativeRobot {
         // SmartDashboard.putNumber("Wrist Potentiometer 2 Value", wristPotentiometer.get());
         // SmartDashboard.putNumber("Gyro Angle", gyro.getAngle());
         SmartDashboard.putNumber("Potentiometer 1", wristPotentiometer.get());
-        SmartDashboard.putNumber("Potentiometer 2", secondWristPotentiometer.get());
+        SmartDashboard.putNumber("Potentiometer 2", secondPotentiometer.get());
         RobotMap.update();
     }
 
@@ -93,7 +92,7 @@ public class Robot extends IterativeRobot {
         // Add sensors
         // LiveWindow.add(gyro.getGyro());
         LiveWindow.add(wristPotentiometer.getPotentiometer());
-        LiveWindow.add(secondWristPotentiometer.getPotentiometer());
+        LiveWindow.add(secondPotentiometer.getPotentiometer());
 
         // Add actuators
         LiveWindow.setEnabled(true);

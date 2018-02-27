@@ -20,7 +20,7 @@ public class Intake extends Subsystem {
     }
 
     public void setMotorSpeed(double speed, IntakeDirection direction) {
-        intakeTalons.set(IntakeDirection.applyDirection(speed, direction));
+        intakeTalons.set(IntakeDirection.applyDirection(speed, direction)*-1);
     }
 
     public void stopMotor() {

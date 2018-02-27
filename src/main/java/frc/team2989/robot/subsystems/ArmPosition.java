@@ -1,42 +1,44 @@
 package frc.team2989.robot.subsystems;
 
+import frc.team2989.robot.IntakeDirection;
 import frc.team2989.robot.commands.SetWristCommand;
 
 public enum ArmPosition {
 
-    /* Rip 2-step INTAKE(45, 45),
-    REST(.34, .49),
-    OUTTAKE(90, 90),
-    TEST(80, 170);*/
-    // Old intake .2013079
-    STARTING_FRONT(.2694565, true),
-    STARTING_BACK(.29124314241886606, false),
-    INTAKE(.22862718129746085, false),
-    // INTAKE(0.35337379797873164, false),
-    PORTAL(.2575511, true),
-    EXCHANGE(.1696136, true),
-    SHOOT_BACK(.2743367193044849, true),
-    SHOOT_FORWARD(.316586890215012, false);
+    STARTING_FRONT(.2694565, false, IntakeDirection.INTAKE),
+    STARTING_BACK(.29124314241886606, true, IntakeDirection.OUTTAKE),
+    INTAKE(.2125, true, IntakeDirection.INTAKE),
+    PORTAL(.2575511, false, IntakeDirection.INTAKE),
+    EXCHANGE(.1696136, false, IntakeDirection.INTAKE),
+    SHOOT_BACK(.2743367193044849, false, IntakeDirection.OUTTAKE),
+    SHOOT_FORWARD(.316586890215012, true, IntakeDirection.INTAKE),
+    POT2_VERT(.3345444802608088, false, IntakeDirection.OUTTAKE);
 
 
 
     private double potentiometerAngle;
-    private boolean useSecondPotentiometer;
+    private boolean firstPotentiometer;
+    private IntakeDirection elbowPosition;
 
-    ArmPosition(double potentiometerAngle, boolean useSecondPotentiometer) {
+    ArmPosition(double potentiometerAngle, boolean firstPotentiometer, IntakeDirection elbowPosition) {
         this.potentiometerAngle = potentiometerAngle;
-        this.useSecondPotentiometer = useSecondPotentiometer;
+        this.firstPotentiometer = firstPotentiometer;
+        this.elbowPosition = elbowPosition;
     }
 
     public static SetWristCommand getByPosition(ArmPosition position) {
-        return new SetWristCommand(position.getAngle(), position.useSecondPotentiometer());
+        return new SetWristCommand(position.getAngle(), position.useFirstPotentiometer());
     }
 
     public double getAngle() {
         return potentiometerAngle;
     }
 
-    public boolean useSecondPotentiometer() {
-        return useSecondPotentiometer;
+    public boolean useFirstPotentiometer() {
+        return firstPotentiometer;
+    }
+
+    public IntakeDirection getDirection() {
+        return elbowPosition;
     }
 }
