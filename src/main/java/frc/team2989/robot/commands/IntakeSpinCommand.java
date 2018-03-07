@@ -9,30 +9,36 @@ import frc.team2989.robot.subsystems.Intake;
 public class IntakeSpinCommand extends Command {
 
     private IntakeDirection direction;
-    private double distance;
-    private double deviation;
     private double speed;
+    private int counter;
+    private double maxCounter;
 
     public IntakeSpinCommand(IntakeDirection direction, double speed) {
+        this.maxCounter = -1;
         this.direction = direction;
-        this.distance = RobotMap.INTAKE_CUBE_DISTANCE;
-        this.deviation = RobotMap.INTAKE_CUBE_DEVIATION;
         this.speed = speed;
+    }
+
+    public IntakeSpinCommand(IntakeDirection direction, double speed, double seconds) {
+        this.direction = direction;
+        this.speed = speed;
+        this.maxCounter = seconds * 5;
     }
 
     @Override
     protected void initialize() {
+        counter = 0;
         Robot.intake.setMotorSpeed(speed, direction);
     }
 
     @Override
     protected void execute() {
-
+        counter++;
     }
 
     @Override
     protected boolean isFinished() {
-        return false;
+        return (counter != -1) && counter >= maxCounter;
     }
 
     @Override

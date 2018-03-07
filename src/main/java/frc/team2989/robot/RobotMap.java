@@ -70,6 +70,9 @@ public class RobotMap {
     // Launch
     public static double AUTONOMOUS_CLOSE_LAUNCH_SPEED = 0.1;
 
+    // Constant Factors
+    public static double AUTONOMOUS_DISTANCE_PER_SECOND = 2.0377; // TODO: THIS IS NOT CONFIRMED, CHECK WITH DOUGLAS
+
     // FAR Delivery
     // (Delivery Scenario #2)
 

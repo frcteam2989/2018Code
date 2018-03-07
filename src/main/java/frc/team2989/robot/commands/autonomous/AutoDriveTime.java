@@ -2,19 +2,19 @@ package frc.team2989.robot.commands.autonomous;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team2989.robot.Robot;
+import frc.team2989.robot.RobotMap;
 
-public class AutoDrive extends Command {
+public class AutoDriveTime extends Command {
 
-    public double distanceDriven = 0;
-
-    private double distance;
+    private double targetDistance;
     private double deviation;
     private double speed;
     private double rotation;
+    private double counter;
 
-    public AutoDrive(double distance, double deviation, double speed, double rotation) {
+    public AutoDriveTime(double distance, double deviation, double speed, double rotation) {
         requires(Robot.driveTrain);
-        this.distance = distance;
+        this.targetDistance = distance;
         this.deviation = deviation;
         this.speed = speed;
         this.rotation = rotation;
@@ -22,14 +22,13 @@ public class AutoDrive extends Command {
 
     @Override
     protected void initialize() {
-        Robot.driveEncoder.reset();
-        distanceDriven = Robot.driveEncoder.getDistance();
+        counter = 0;
     }
 
     @Override
     protected void execute() {
+        counter++;
         Robot.driveTrain.driveRobot(speed, rotation);
-        distanceDriven = Robot.driveEncoder.getDistance();
     }
 
     @Override
@@ -38,8 +37,8 @@ public class AutoDrive extends Command {
     }
 
     private boolean isNearSwitch() {
-        double currentDistance = Robot.driveEncoder.getDistance();
-        return (currentDistance >= (distance - deviation) && currentDistance <= (distance + deviation));
+        double currentDistance = getDistance();
+        return (currentDistance >= (targetDistance - deviation) && currentDistance <= (targetDistance + deviation));
     }
     @Override
     protected void end() {
@@ -49,5 +48,9 @@ public class AutoDrive extends Command {
     @Override
     protected void interrupted() {
         end();
+    }
+
+    private double getDistance() {
+        return (counter * 5) * RobotMap.AUTONOMOUS_DISTANCE_PER_SECOND;
     }
 }
