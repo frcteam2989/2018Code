@@ -3,12 +3,17 @@ package frc.team2989.robot;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Preferences;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team2989.robot.commands.UpdateRobotMapCommand;
+import frc.team2989.robot.commands.autonomous.AutoCrossLine;
+import frc.team2989.robot.commands.commandgroups.AutoScoreCloseSwitch;
 import frc.team2989.robot.oi.OI;
 import frc.team2989.robot.subsystems.*;
+import openrio.powerup.MatchData;
 
 import java.util.stream.IntStream;
 
@@ -23,7 +28,8 @@ public class Robot extends IterativeRobot {
     public static Potentiometer wristPotentiometer;
     public static Potentiometer secondPotentiometer;
     public static OI oi;
-    private static UpdateRobotMapCommand updateRobotMapCommand;
+    public static Command autonomousCommand;
+    SendableChooser<MatchData.OwnedSide> chooser;
     Preferences robotPreferences;
 
     @Override
@@ -38,10 +44,10 @@ public class Robot extends IterativeRobot {
         secondPotentiometer = new Potentiometer(RobotMap.ARM_SECOND_WRIST_POTENTIOMETER_PORT, PotentiometerType.WRIST);
         climbing = new Climbing();
         oi = new OI();
-        // autonomousCommand = new AutoScoreCloseSwitch();
         setLiveWindow();
         updateDashboard();
-        updateRobotMapCommand = new UpdateRobotMapCommand();
+        setupChooser();
+        UpdateRobotMapCommand updateRobotMapCommand = new UpdateRobotMapCommand();
     }
 
     @Override
@@ -54,7 +60,11 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void autonomousInit() {
-
+        MatchData.OwnedSide switchSide = MatchData.getOwnedSide(MatchData.GameFeature.SWITCH_NEAR);
+        MatchData.OwnedSide robotSide = chooser.getSelected();
+        boolean canDeliver = robotSide == switchSide;
+        autonomousCommand = (canDeliver) ? new AutoScoreCloseSwitch() : new AutoCrossLine();
+        autonomousCommand.start();
     }
 
     @Override
@@ -98,4 +108,11 @@ public class Robot extends IterativeRobot {
         LiveWindow.setEnabled(true);
     }
 
+    private void setupChooser() {
+        chooser = new SendableChooser<>();
+        chooser.addDefault("Left Side (close delivery or none)", MatchData.OwnedSide.LEFT);
+        chooser.addObject("Right Side (close delivery or none)", MatchData.OwnedSide.RIGHT);
+        SmartDashboard.putData("Autonomous Command Chooser (PICK THIS)", chooser);
+        
+    }
 }

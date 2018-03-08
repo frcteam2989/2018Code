@@ -48,17 +48,18 @@ public class RobotMap {
     public static int SENSORS_GYRO_PORT = 1;
     public static int SENSORS_ENCODER_DRIVE_PORT1 = 2;
     public static int SENSORS_ENCODER_DRIVE_PORT2 = 3;
-    public static double SENSORS_ENCODER_DRIVE_DISTANCE_PER_PULSE = 2.0377; // Inches
+    public static double SENSORS_ENCODER_DRIVE_DISTANCE_PER_PULSE = 2.90168838; // Inches (.09 revolutions per pulse) -> 1.142397 in per pulse (2.90 cm)
 
     // Autonomous
 
     // Close Delivery
     // (Delivery Scenario #1)
+    // cm for distances
 
     // Drive
     public static double AUTONOMOUS_CLOSE_DRIVE_SPEED = 1;
     public static double AUTONOMOUS_CLOSE_DRIVE_ROTATION = 0;
-    public static double AUTONOMOUS_CLOSE_DRIVE_DISTANCE = 310.65;
+    public static double AUTONOMOUS_CLOSE_DRIVE_DISTANCE = 426.72; // cm
     public static double AUTONOMOUS_CLOSE_DRIVE_DEVIATION = 1;
 
     // Turn
@@ -66,12 +67,18 @@ public class RobotMap {
     public static double AUTONOMOUS_CLOSE_TURN_ROTATION = 90;
     public static double AUTONOMOUS_CLOSE_TURN_ANGLE = 90;
     public static double AUTONOMOUS_CLOSE_TURN_DEVIATION = 5;
+    
+    // Drive into
+    public static double AUTONOMOUS_CLOSE_DRIVE_INTO_SPEED = 0.5;
+    public static double AUTONOMOUS_CLOSE_DRIVE_INTO_ROTATION = 0;
+    public static double AUTONOMOUS_CLOSE_DRIVE_INTO_DISTANCE = 71.12; // cm (28 inches for partial, 36 for full (assuming no horizontal distance while turning)
+    public static double AUTONOMOUS_CLOSE_DRIVE_INTO_DEVIATION = 1;
 
     // Launch
     public static double AUTONOMOUS_CLOSE_LAUNCH_SPEED = 0.1;
 
-    // Constant Factors
-    public static double AUTONOMOUS_DISTANCE_PER_SECOND = 2.0377; // TODO: THIS IS NOT CONFIRMED, CHECK WITH DOUGLAS
+    // Constant Factors (speed based)
+    public static double AUTONOMOUS_DISTANCE_PER_SECOND = 6.90; // TODO: THIS IS NOT CONFIRMED, CHECK WITH DOUGLAS
 
     // FAR Delivery
     // (Delivery Scenario #2)
@@ -93,6 +100,7 @@ public class RobotMap {
     public static double AUTONOMOUS_FAR_DRIVE_PAST_ROTATION = 0;
     public static double AUTONOMOUS_FAR_DRIVE_PAST_DISTANCE = 635.254;
     public static double AUTONOMOUS_FAR_DRIVE_PAST_DEVIATION = 1;
+
 
     // Turn past
     public static double AUTONOMOUS_FAR_TURN_PAST_SPEED = 0.5;

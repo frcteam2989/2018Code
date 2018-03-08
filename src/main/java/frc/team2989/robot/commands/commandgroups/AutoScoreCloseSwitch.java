@@ -16,6 +16,7 @@ public class AutoScoreCloseSwitch extends CommandGroup {
         Stream.of(
             new AutoDriveEncoder(RobotMap.AUTONOMOUS_CLOSE_DRIVE_DISTANCE, RobotMap.AUTONOMOUS_CLOSE_DRIVE_DEVIATION, RobotMap.AUTONOMOUS_CLOSE_DRIVE_SPEED, RobotMap.AUTONOMOUS_CLOSE_DRIVE_ROTATION),
             new AutoTurn(turnAngle, RobotMap.AUTONOMOUS_CLOSE_TURN_DEVIATION, RobotMap.AUTONOMOUS_CLOSE_TURN_ROTATION, RobotMap.AUTONOMOUS_CLOSE_TURN_SPEED),
+            new AutoDriveEncoder(RobotMap.AUTONOMOUS_CLOSE_DRIVE_INTO_DISTANCE, RobotMap.AUTONOMOUS_CLOSE_DRIVE_INTO_DEVIATION, RobotMap.AUTONOMOUS_CLOSE_DRIVE_INTO_SPEED, RobotMap.AUTONOMOUS_CLOSE_DRIVE_INTO_ROTATION),
             new AutoLaunchCube(RobotMap.AUTONOMOUS_CLOSE_LAUNCH_SPEED, 1)
         ).forEachOrdered(this::addSequential);
     }
