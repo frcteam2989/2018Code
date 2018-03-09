@@ -58,12 +58,17 @@ public class Robot extends IterativeRobot {
     public void disabledPeriodic() {
     }
 
-    @Override
+    /*@Override
     public void autonomousInit() {
         MatchData.OwnedSide switchSide = MatchData.getOwnedSide(MatchData.GameFeature.SWITCH_NEAR);
         MatchData.OwnedSide robotSide = chooser.getSelected();
         boolean canDeliver = robotSide == switchSide;
         autonomousCommand = (canDeliver) ? new AutoScoreCloseSwitch() : new AutoCrossLine();
+        autonomousCommand.start();
+    }   */
+
+    public void autonomousInit() {
+        autonomousCommand = new AutoCrossLine();
         autonomousCommand.start();
     }
 
@@ -75,7 +80,9 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void teleopInit() {
-
+        if(autonomousCommand != null) {
+            autonomousCommand.cancel();
+        }
     }
 
     @Override

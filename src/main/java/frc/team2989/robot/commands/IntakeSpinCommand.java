@@ -12,17 +12,20 @@ public class IntakeSpinCommand extends Command {
     private double speed;
     private int counter;
     private double maxCounter;
+    private boolean isTimed;
 
     public IntakeSpinCommand(IntakeDirection direction, double speed) {
         this.maxCounter = -1;
         this.direction = direction;
         this.speed = speed;
+        isTimed = false;
     }
 
     public IntakeSpinCommand(IntakeDirection direction, double speed, double seconds) {
         this.direction = direction;
         this.speed = speed;
         this.maxCounter = seconds * 5;
+        isTimed = true;
     }
 
     @Override
@@ -38,7 +41,7 @@ public class IntakeSpinCommand extends Command {
 
     @Override
     protected boolean isFinished() {
-        return (counter != -1) && counter >= maxCounter;
+        return isTimed && counter >= maxCounter;
     }
 
     @Override

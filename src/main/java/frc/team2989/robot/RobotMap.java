@@ -57,9 +57,9 @@ public class RobotMap {
     // cm for distances
 
     // Drive
-    public static double AUTONOMOUS_CLOSE_DRIVE_SPEED = 1;
+    public static double AUTONOMOUS_CLOSE_DRIVE_SPEED = .5;
     public static double AUTONOMOUS_CLOSE_DRIVE_ROTATION = 0;
-    public static double AUTONOMOUS_CLOSE_DRIVE_DISTANCE = 426.72; // cm
+    public static double AUTONOMOUS_CLOSE_DRIVE_DISTANCE = 440.72; // cm
     public static double AUTONOMOUS_CLOSE_DRIVE_DEVIATION = 1;
 
     // Turn

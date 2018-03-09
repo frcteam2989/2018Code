@@ -28,7 +28,7 @@ public class AutoDriveTime extends Command {
     @Override
     protected void execute() {
         counter++;
-        Robot.driveTrain.driveRobot(speed, rotation);
+        Robot.driveTrain.driveRobot(speed*-1, rotation);
     }
 
     @Override
@@ -51,6 +51,6 @@ public class AutoDriveTime extends Command {
     }
 
     private double getDistance() {
-        return (counter * 5) * RobotMap.AUTONOMOUS_DISTANCE_PER_SECOND;
+        return (counter / 5) * RobotMap.AUTONOMOUS_DISTANCE_PER_SECOND;
     }
 }
